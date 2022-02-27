@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<project name="xslbook-do" basedir="." default="build">
+
+ <!-- These properties are used by merge processes -->
+ <property name="product" value="xslbook-do.xsl"/>
+ <property name="version" value="0.1"/>
+ <property name="copyright" value="Copyright (C) 2022 xslet project"/>
+ <property name="license" value="MIT License"/>
+ <property name="prodtype" value="library"/>
+
+
+ <!-- Dependencies for this project -->
+ <target name="setup:deps" depends="setup:deps:base">
+  <antcall target="setup:xslutil"/>
+  <antcall target="setup:xsldo"/>
+ </target>
+
+ <property name="dep.xslutil.version" value="1.0.2"/>
+
+ <target name="setup:xslutil">
+  <property name="pkg" value="xslutil-${dep.xslutil.version}"/>
+  <property name="dir" value="${dir.work.xsl}/${pkg}"/>
+  <property name="url" value="https://github.com/xslet/xslutil/archive/${dep.xslutil.version}.zip"/>
+  <property name="zip" location="${dir.work.dl}/${pkg}.zip"/>
+  <property name="unzip" location="${dir}/.."/>
+  <get src="${url}" dest="${zip}"/>
+  <unzip src="${zip}" dest="${unzip}"/>
+ </target>
+
+ <property name="dep.xsldo.version" value="1.0.1"/>
+
+ <target name="setup:xsldo">
+  <property name="pkg" value="xsldo-${dep.xsldo.version}"/>
+  <property name="dir" value="${dir.work.xsl}/${pkg}"/>
+  <property name="url" value="https://github.com/xslet/xsldo/archive/${dep.xsldo.version}.zip"/>
+  <property name="zip" location="${dir.work.dl}/${pkg}.zip"/>
+  <property name="unzip" location="${dir}/.."/>
+  <get src="${url}" dest="${zip}"/>
+  <unzip src="${zip}" dest="${unzip}"/>
+ </target>
+
+
+ <import file="res/ant/build.targets.xml"/>
+ <import file="res/ant/build.dependencies.xml"/>
+ <import file="res/ant/build.directories.xml"/>
+
+</project>
