@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="application/xml" href="unit-test.xsl"?>
+
+<describe title="&lt;for times=&quot;…&quot;&gt;">
+
+ <describe title="Use @times attribute">
+  <it title="should loop for specified times">
+   <compute><for times="5">A</for></compute>
+   <expect>AAAAA</expect>
+  </it>
+
+
+  <it title="should not loop if times is zero">
+   <compute><for times="0">A</for></compute>
+   <expect></expect>
+  </it>
+ </describe>
+
+
+ <describe title="Use attr[@name='times'] element">
+  <it title="should loop for specified times">
+   <compute><for><attr name="times">5</attr>A</for></compute>
+   <expect>AAAAA</expect>
+  </it>
+ </describe>
+
+ 
+ <describe title="Use @data-src attribute">
+  <it title="should loop for specified times">
+   <compute><for data-src="data/for_times.data.xml"><attr name="times"><count of="/List/Item"/></attr>A</for></compute>
+   <expect>AAA</expect>
+  </it>
+ </describe>
+
+
+ <describe title="Use attr[@name='data-src'] element">
+  <it title="should loop for specified times">
+   <compute><for><attr name="data-src">data/for_times.data.xml</attr><attr name="times"><count of="/List/Item"/></attr>A</for></compute>
+   <expect>AAA</expect>
+  </it>
+ </describe>
+
+
+ <describe title="Apply child elements">
+  <it title="should loop child value element">
+   <compute><for times="3"><value of="//aaa/bbb"/></for></compute>
+   <expect>123123123</expect>
+  </it>
+
+
+  <it title="should nest loop by for with @times attribute">
+   <compute><for times="3"><for times="2"><value of="//aaa/bbb"/></for></for></compute>
+   <expect>123123123123123123</expect>
+  </it>
+
+
+  <it title="should nest loop by for with @each attribute">
+   <compute><for each="//aaa"><for times="2"><for each="bbb"><value of="."/></for></for></for></compute>
+   <expect>123456123456789789</expect>
+  </it>
+ </describe>
+
+ <aaa>
+  <bbb>123</bbb>
+  <bbb>456</bbb>
+ </aaa>
+ <aaa>
+  <bbb>789</bbb>
+ </aaa>
+</describe>

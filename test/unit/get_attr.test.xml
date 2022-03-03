@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="application/xml" href="unit-test.xsl"?>
+
+<describe title="book:get_attr">
+
+ <it title="should get an attribute value">
+  <compute name="book:get_attr" attr-name="attr-value">
+   <param name="name">attr-name</param>
+  </compute>
+  <expect>attr-value</expect>
+ </it>
+
+
+ <it title="should get a value from child `attr` element if the element exists and the attribute is not found">
+  <compute name="book:get_attr">
+   <param name="name">attr-name</param>
+   <attr name="attr-name">123</attr>
+  </compute>
+  <expect>123</expect>
+ </it>
+
+
+ <it title="should get an empty string if both attribute and `attr` element are not found">
+  <compute name="book:get_attr">
+   <param name="name">attr-name</param>
+  </compute>
+  <expect></expect>
+ </it>
+
+
+ <it title="should get an attribute value if both attribute and `attr` are present">
+  <compute name="book:get_attr" attr-name="ABC">
+   <param name="name">attr-name</param>
+   <attr name="attr-name">123</attr>
+  </compute>
+  <expect>ABC</expect>
+ </it>
+
+
+ <it title="should get an attribute value even if it is an empty string">
+  <compute name="book:get_attr" attr-name="">
+   <param name="name">attr-name</param>
+   <attr name="attr-name">123</attr>
+  </compute>
+  <expect></expect>
+ </it>
+
+</describe>

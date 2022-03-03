@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="application/xml" href="unit-test.xsl"?>
+
+<describe title="&lt;contents of=&quot;…&quot;&gt;">
+
+  <describe title="Use @of attribute">
+   <it title="should get contents at specified path '.'">
+    <compute><contents of=".">A<b>B<c>C</c>b</b>a</contents></compute>
+    <expect>ABCba</expect>
+   </it>
+
+
+   <it title="should get contents at absolute path">
+    <compute><contents of="/describe/dataset/aaa/bbb"/></compute>
+    <expect>B1B2B3</expect>
+   </it>
+
+
+   <it title="should get contents at relative path">
+    <compute><contents of="aaa/bbb">
+     <aaa><bbb>C1</bbb></aaa><aaa><bbb>C2</bbb></aaa>
+    </contents></compute>
+    <expect>C1C2</expect>
+   </it>
+
+
+   <it title="should get contents at a path with an attribute">
+    <compute><contents of="/describe/dataset/aaa/bbb[@id='b2']"/></compute>
+    <expect>B2B3</expect>
+   </it>
+
+
+   <it title="should also get values of child or descendant element at specified path">
+    <compute><contents of="/describe/dataset/aaa"/></compute>
+    <expect>A1B1B2B3</expect>
+   </it>
+
+   <it title="should get contents at a path with an index">
+    <compute><contents of="/describe/dataset/aaa/bbb[2]"/></compute>
+    <expect>B2</expect>
+   </it>
+
+   <it title="should get values at a path with indexes">
+    <compute><contents of="/describe/dataset/aaa[2]/bbb[1]"/></compute>
+    <expect>B3</expect>
+   </it>
+  </describe>
+
+
+  <describe title="Use attr[@name='of'] element">
+   <it title="should get contents at absolute path">
+    <compute><contents>
+     <attr name="of">/describe/dataset/aaa/bbb</attr>
+    </contents></compute>
+    <expect>B1B2B3</expect>
+   </it>
+
+
+   <it title="should get contents at relative path">
+    <compute><contents><attr name="of">aaa/bbb</attr>
+     <aaa><bbb>C1</bbb></aaa>
+     <aaa><bbb>C2</bbb></aaa>
+    </contents></compute>
+    <expect>C1C2</expect>
+   </it>
+  </describe>
+
+
+  <describe title="Use @prefix and @suffix attribute">
+   <it title="should print prefix and suffix for each value">
+    <compute><contents of="//dataset/aaa/bbb" prefix="(" suffix=")"/></compute>
+    <expect>(B1)(B2)(B3)</expect>
+   </it>
+  </describe>
+
+
+  <describe title="Use attr[@name='prefix'] and attr[@name='suffix'] element">
+   <it title="should print prefix and suffix for each value">
+    <compute><contents of="//dataset/aaa/bbb"><attr name="prefix">(</attr><attr name="suffix">)</attr></contents></compute>
+    <expect>(B1)(B2)(B3)</expect>
+   </it>
+  </describe>
+
+
+ <describe title="Use @separator attribute">
+  <it title="should print separator for each value">
+   <compute><contents of="//dataset/aaa/bbb" separator=", "/></compute>
+   <expect>B1, B2, B3</expect>
+  </it>
+ </describe>
+
+
+ <describe title="Use attr[@name='separator'] element">
+  <it title="should print separator for each value">
+   <compute><contents of="//dataset/aaa/bbb"><attr name="separator">, </attr></contents></compute>
+   <expect>B1, B2, B3</expect>
+  </it>
+ </describe>
+
+
+  <describe title="Use @data-src attribute">
+   <it title="should get contents in the external file">
+    <compute><contents of="/List/Item" prefix="(" suffix=")" data-src="data/content.data.xml"/></compute>
+    <expect>(ABCabc)(DEFdef)(GHIghi)(JKLjkl)</expect>
+   </it>
+  </describe>
+
+
+  <describe title="Use attr[@name='data-src'] element">
+   <it title="should get contents in the external file">
+    <compute><contents of="/List/Item" prefix="(" suffix=")"><attr name="data-src">data/content.data.xml</attr></contents></compute>
+    <expect>(ABCabc)(DEFdef)(GHIghi)(JKLjkl)</expect>
+   </it>
+  </describe>
+
+
+
+ <dataset>
+  <aaa>A1<bbb>B1</bbb><bbb id="b2">B2</bbb></aaa>
+  <aaa><bbb id="b2">B3</bbb></aaa>
+ </dataset>
+
+</describe>

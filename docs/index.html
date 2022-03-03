@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-with,initial-scale=1">
+ <title>xslbook-do ver0.1</title>
+ <link rel="stylesheet" type="text/css" href="index.css">
+ <link rel="icon" type="image/png" href="./images/xslet-logo.png">
+</head>
+<body>
+ <nav>
+  <ul>
+   <li><a href="#about">About</a></li>
+   <li><a href="#usage">Usage</a></li>
+   <li><a href="./api/xslbook-do.xml">APIs</a></li>
+   <li><a href="#tests">Tests</a></li>
+   <li><a href="#links">Links</a></li>
+  </ul>
+  <a href="#"><img id="logo" src="./images/xslet-logo.png"></a>
+ </nav>
+
+ <main>
+  <header>
+   <h1>xslbook-do <span class="version">Ver 0.1</span></h1>
+   <p>
+A XSL Library which provides XSLT match templates for XML data operations for <a href="https://github.com/xslet/xslbook">xslbook</a>.
+   </p>
+   <p>
+Copyright (C) xslet project.<br>
+MIT License.
+   </p>
+  </header>
+
+  <a name="about"></a>
+  <section>
+   <h2>About xslbook-do</h2>
+   <p>
+xslbook-do is a XSLT library which provides XSLT match templates to operate XML data for xslbook.
+This library enables to let users to operate XML data without exposing XSLT and XPath specifications to them.
+   </p>
+   <p>
+This library implements the match templates to get an object/objects or to loop child nodes.
+These XSLT templates basically wrap the named templates of xsldo, and the path specifications and so on follow xsldo's specification.
+   </p>
+   <p>
+This program is written in XSLT 1.0.
+   </p>
+  </section>
+
+  <a name="usage"></a>
+  <section>
+   <h2>Usage</h2>
+   <p>
+This section explains how to import xslbook-do and call its templates in your XSL application or library.
+   </p>
+
+   <section>
+    <h3>Import xslbook-do</h3>
+    <p>
+To import xslbook-do.xsl into another XSL file, the following handworks are needed.
+Since xslbook-do depends on xslutil and xsldo, xslutil.xsl and xsldo.xsl are needed to import, too.
+    </p>
+    <ol>
+     <li>
+      <p>
+Add the namespaces declaration of xslbook, xsldo and xslutil in a XSL file.
+      </p>
+      <div class="code">
+<div>&lt;xsl-stylesheet version="1.0"</div>
+<div> &nbsp; xmlns:xsl="http://www.w3.org/1999/XSL/Transform"</div>
+<div> &nbsp; xmlns:ut="https://github.com/xslet/2020/xslutil"</div>
+<div> &nbsp; xmlns:do="https://github.com/xslet/2020/xsldo"</div>
+<div> &nbsp; xmlns:book="https://github.com/xslet/2020/xslbook"&gt; &lt;!-- This! --&gt;</div>
+<div> &nbsp; ...</div>
+      </div>
+     </li>
+     <li>
+      <p>
+Add a import element of xslbook-do in the XSL file.
+      </p>
+      <div class="code">
+<div> &nbsp; ...</div>
+<div> &nbsp; &lt;!-- xslutil.xsl and xsldo.xsl are already imported in xslbook-do.xsl --&gt;</div>
+<div> &nbsp; &lt;xsl:import href="./xslbook-do.xsl"/&gt;
+<div> &nbsp; ...</div>
+      </div>
+     </li>
+    </ol>
+   </section>
+
+   <section>
+    <h3>Call templates</h3>
+    <p>
+xslbook-do provides the following match templates:
+    </p>
+    <ul>
+     <li><a href="#usage_value">&lt;value of="…"&gt;</a></li>
+     <li><a href="#usage_values">&lt;values of="…"&gt;</a></li>
+     <li><a href="#usage_content">&lt;content of="…"&gt;</a></li>
+     <li><a href="#usage_contents">&lt;contents of="…"&gt;</a></li>
+     <li><a href="#usage_number">&lt;number of="…"&gt;</a></li>
+     <li><a href="#usage_numbers">&lt;numbers of="…"&gt;</a></li>
+     <li><a href="#usage_name">&lt;name of="…"&gt;</a></li>
+     <li><a href="#usage_names">&lt;names of="…"&gt;</a></li>
+     <li><a href="#usage_preceding_comment">&lt;prececind-comment of="…"&gt;</a></li>
+     <li><a href="#usage_following_comment">&lt;followind-comment of="…"&gt;</a></li>
+     <li><a href="#usage_count">&lt;count of="…"&gt;</a></li>
+     <li><a href="#usage_sum">&lt;sum of="…"&gt;</a></li>
+     <li><a href="#usage_if">&lt;if of="…"&gt;</a></li>
+     <li><a href="#usage_choose">&lt;choose of="…"&gt;</a></li>
+     <li><a href="#usage_for_each">&lt;for each="…"&gt;</a></li>
+     <li><a href="#usage_for_times">&lt;for times="…"&gt;</a></li>
+     <li><a href="#usage_index">&lt;index of="…"&gt;</a></li>
+    </ul>
+
+    <section class="call">
+     <a name="usage_value"></a><a name="usage_values"></a>
+     <h4>&lt;value of="…"&gt; and &lt;values of="…"&gt;</h4>
+     <p>
+Get a value of first node and values of nodes at the specified path.
+     </p>
+     <div class="code">
+<div> &lt;?xml version="1.0" encoding="utf-8"?&gt;</div>
+<div> &lt;!-- value.xsl --&gt;</div>
+<div> &lt;xsl:stylesheet version="1.0"</div>
+<div> &nbsp; xmlns:ut="https://github.com/xslet/2020/xslutil"</div>
+<div> &nbsp; xmlns:do="https://github.com/xslet/2020/xsldo"</div>
+<div> &nbsp; xmlns:book="https://github.com/xslet/2020/xslbook"</div>
+<div> &nbsp; xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;</div>
+<div> &nbsp; &lt;xsl:import href="xslbook-do.xsl"/&gt;</div>
+<div> &nbsp; &lt;xsl:template match="/top"&gt;</div>
+<div> &nbsp; &nbsp; &lt;html&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;body&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &nbsp; &lt;xsl:apply-templates select="value|values|text()"/&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;/body&gt;</div>
+<div> &nbsp; &nbsp; &lt;/html&gt;</div>
+<div> &nbsp; &lt;/xsl:template&gt;</div>
+<div> &lt;/xsl:stylesheet&gt;</div>
+     </div>
+     <p>
+By using the above XSL file, the following XML file prints <code>ABC1 and ABC1,ABC2,ABC3</code> on your Web browser.
+     </p>
+     <div class="code">
+<div> &lt;?xml version="1.0" encoding="utf-8"?&gt;</div>
+<div> &lt;?xml-stylesheet type="application/xml" href="value.xsl"?&gt;</div>
+<div> &lt;top&gt;</div>
+<div> &nbsp; &lt;value of="//aaa/bbb"/&gt; and &lt;values of="//aaa/bbb" separator=","/&gt;</div>
+<div> &nbsp; &lt;aaa&gt;</div>
+<div> &nbsp; &nbsp; &lt;bbb&gt;ABC1&lt;/bbb&gt;</div>
+<div> &nbsp; &nbsp; &lt;bbb&gt;ABC2&lt;/bbb&gt;</div>
+<div> &nbsp; &lt;/aaa&gt;</div>
+<div> &nbsp; &lt;aaa&gt;</div>
+<div> &nbsp; &nbsp; &lt;bbb&gt;ABC3&lt;/bbb&gt;</div>
+<div> &nbsp; &lt;/aaa&gt;</div>
+<div> &lt;/top&gt;</div>
+     </div>
+    </sectin>
+
+    <section class="call">
+     <a name="usage_content"></a><a name="usage_contents"></a>
+     <h4>&lt;content of="…"&gt; and &lt;contents of="…"&gt;</h4>
+     <p>
+Get a content of first node and contents of nodes at the specified path.
+     </p>
+     <div class="code">
+<div> &lt;?xml version="1.0" encoding="utf-8"?&gt;</div>
+<div> &lt;!-- content.xsl --&gt;</div>
+<div> &lt;xsl:stylesheet version="1.0"</div>
+<div> &nbsp; xmlns:ut="https://github.com/xslet/2020/xslutil"</div>
+<div> &nbsp; xmlns:do="https://github.com/xslet/2020/xsldo"</div>
+<div> &nbsp; xmlns:book="https://github.com/xslet/2020/xslbook"</div>
+<div> &nbsp; xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;</div>
+<div> &nbsp; &lt;xsl:import href="xslbook-do.xsl"/&gt;</div>
+<div> &nbsp; &lt;xsl:template match="/top"&gt;</div>
+<div> &nbsp; &nbsp; &lt;html&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;body&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &nbsp; &lt;xsl:apply-templates select="content|contents|text()"/&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;/body&gt;</div>
+<div> &nbsp; &nbsp; &lt;/html&gt;</div>
+<div> &nbsp; &lt;/xsl:template&gt;</div>
+<div> &lt;/xsl:stylesheet&gt;</div>
+     </div>
+     <p>
+By using the above XSL file, the following XML file prints <code>A1B1 and A1B1,A2B2,A3B3</code> on your Web browser.
+     </p>
+     <div class="code">
+<div> &lt;?xml version="1.0" encoding="utf-8"?&gt;</div>
+<div> &lt;?xml-stylesheet type="application/xml" href="content.xsl"?&gt;</div>
+<div> &lt;top&gt;</div>
+<div> &nbsp; &lt;content of="//aaa/bbb"/&gt; and &lt;contents of="//aaa/bbb" separator=","/&gt;</div>
+<div> &nbsp; &lt;aaa&gt;</div>
+<div> &nbsp; &nbsp; &lt;bbb&gt;A1&lt;ccc&gt;B1&lt;/ccc&gt;&lt;/bbb&gt;</div>
+<div> &nbsp; &nbsp; &lt;bbb&gt;A2&lt;ccc&gt;B2&lt;/ccc&gt;&lt;/bbb&gt;</div>
+<div> &nbsp; &lt;/aaa&gt;</div>
+<div> &nbsp; &lt;aaa&gt;</div>
+<div> &nbsp; &nbsp; &lt;bbb&gt;A3&lt;ccc&gt;B3&lt;/ccc&gt;&lt;/bbb&gt;</div>
+<div> &nbsp; &lt;/aaa&gt;</div>
+<div> &lt;/top&gt;</div>
+     </div>
+    </sectin>
+
+    <section class="call">
+     <a name="usage_number"></a><a name="usage_numbers"></a>
+     <h4>&lt;number of="…"&gt; and &lt;numbers of="…"&gt;</h4>
+     <p>
+Get a number of first node and numbers of nodes at the specified path.
+     </p>
+     <div class="code">
+<div> &lt;?xml version="1.0" encoding="utf-8"?&gt;</div>
+<div> &lt;!-- number.xsl --&gt;</div>
+<div> &lt;xsl:stylesheet version="1.0"</div>
+<div> &nbsp; xmlns:ut="https://github.com/xslet/2020/xslutil"</div>
+<div> &nbsp; xmlns:do="https://github.com/xslet/2020/xsldo"</div>
+<div> &nbsp; xmlns:book="https://github.com/xslet/2020/xslbook"</div>
+<div> &nbsp; xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;</div>
+<div> &nbsp; &lt;xsl:import href="xslbook-do.xsl"/&gt;</div>
+<div> &nbsp; &lt;xsl:template match="/top"&gt;</div>
+<div> &nbsp; &nbsp; &lt;html&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;body&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &nbsp; &lt;xsl:apply-templates select="number|numbers|text()"/&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;/body&gt;</div>
+<div> &nbsp; &nbsp; &lt;/html&gt;</div>
+<div> &nbsp; &lt;/xsl:template&gt;</div>
+<div> &lt;/xsl:stylesheet&gt;</div>
+     </div>
+     <p>
+By using the above XSL file, the following XML file prints <code>11 and 11,NaN,33</code> on your Web browser.
+     </p>
+     <div class="code">
+<div> &lt;?xml version="1.0" encoding="utf-8"?&gt;</div>
+<div> &lt;?xml-stylesheet type="application/xml" href="number.xsl"?&gt;</div>
+<div> &lt;top&gt;</div>
+<div> &nbsp; &lt;number of="//aaa/bbb"/&gt; and &lt;numbers of="//aaa/bbb" separator=","/&gt;</div>
+<div> &nbsp; &lt;aaa&gt;</div>
+<div> &nbsp; &nbsp; &lt;bbb&gt;11&lt;/bbb&gt;</div>
+<div> &nbsp; &nbsp; &lt;bbb&gt;2A&lt;/bbb&gt;</div>
+<div> &nbsp; &lt;/aaa&gt;</div>
+<div> &nbsp; &lt;aaa&gt;</div>
+<div> &nbsp; &nbsp; &lt;bbb&gt;33&lt;/bbb&gt;</div>
+<div> &nbsp; &lt;/aaa&gt;</div>
+<div> &lt;/top&gt;</div>
+     </div>
+    </sectin>
+
+    <section class="call">
+     <a name="usage_name"></a><a name="usage_names"></a>
+     <h4>&lt;name of="…"&gt; and &lt;names of="…"&gt;</h4>
+     <p>
+Get a name of first node and names of nodes at the specified path.
+     </p>
+     <div class="code">
+<div> &lt;?xml version="1.0" encoding="utf-8"?&gt;</div>
+<div> &lt;!-- name.xsl --&gt;</div>
+<div> &lt;xsl:stylesheet version="1.0"</div>
+<div> &nbsp; xmlns:ut="https://github.com/xslet/2020/xslutil"</div>
+<div> &nbsp; xmlns:do="https://github.com/xslet/2020/xsldo"</div>
+<div> &nbsp; xmlns:book="https://github.com/xslet/2020/xslbook"</div>
+<div> &nbsp; xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;</div>
+<div> &nbsp; &lt;xsl:import href="xslbook-do.xsl"/&gt;</div>
+<div> &nbsp; &lt;xsl:template match="/top"&gt;</div>
+<div> &nbsp; &nbsp; &lt;html&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;body&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &nbsp; &lt;xsl:apply-templates select="name|names|text()"/&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;/body&gt;</div>
+<div> &nbsp; &nbsp; &lt;/html&gt;</div>
+<div> &nbsp; &lt;/xsl:template&gt;</div>
+<div> &lt;/xsl:stylesheet&gt;</div>
+     </div>
+     <p>
+By using the above XSL file, the following XML file prints <code>bbb and bbb,ccc,ddd</code> on your Web browser.
+     </p>
+     <div class="code">
+<div> &lt;?xml version="1.0" encoding="utf-8"?&gt;</div>
+<div> &lt;?xml-stylesheet type="application/xml" href="name.xsl"?&gt;</div>
+<div> &lt;top&gt;</div>
+<div> &nbsp; &lt;name of="//aaa/*"/&gt; and &lt;names of="//aaa/*" separator=","/&gt;</div>
+<div> &nbsp; &lt;aaa&gt;</div>
+<div> &nbsp; &nbsp; &lt;bbb&gt;1&lt;/bbb&gt;</div>
+<div> &nbsp; &nbsp; &lt;ccc&gt;2&lt;/ccc&gt;</div>
+<div> &nbsp; &lt;/aaa&gt;</div>
+<div> &nbsp; &lt;aaa&gt;</div>
+<div> &nbsp; &nbsp; &lt;ddd&gt;3&lt;/ddd&gt;</div>
+<div> &nbsp; &lt;/aaa&gt;</div>
+<div> &lt;/top&gt;</div>
+     </div>
+    </sectin>
+
+    <section class="call">
+     <a name="usage_preceding_comment"></a><a name="usage_following_comment"></a>
+     <h4>&lt;preceding_comment of="…"&gt; and &lt;following_comment of="…"&gt;</h4>
+     <p>
+Get a preceding comment of first node and a following comment of first node at the specified path.
+     </p>
+     <div class="code">
+<div> &lt;?xml version="1.0" encoding="utf-8"?&gt;</div>
+<div> &lt;!-- comment.xsl --&gt;</div>
+<div> &lt;xsl:stylesheet version="1.0"</div>
+<div> &nbsp; xmlns:ut="https://github.com/xslet/2020/xslutil"</div>
+<div> &nbsp; xmlns:do="https://github.com/xslet/2020/xsldo"</div>
+<div> &nbsp; xmlns:book="https://github.com/xslet/2020/xslbook"</div>
+<div> &nbsp; xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;</div>
+<div> &nbsp; &lt;xsl:import href="xslbook-do.xsl"/&gt;</div>
+<div> &nbsp; &lt;xsl:template match="/top"&gt;</div>
+<div> &nbsp; &nbsp; &lt;html&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;body&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &nbsp; &lt;xsl:apply-templates select="preceding-comment|following-comment|text()"/&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;/body&gt;</div>
+<div> &nbsp; &nbsp; &lt;/html&gt;</div>
+<div> &nbsp; &lt;/xsl:template&gt;</div>
+<div> &lt;/xsl:stylesheet&gt;</div>
+     </div>
+     <p>
+By using the above XSL file, the following XML file prints <code>commant1 and comment2</code> on your Web browser.
+     </p>
+     <div class="code">
+<div> &lt;?xml version="1.0" encoding="utf-8"?&gt;</div>
+<div> &lt;?xml-stylesheet type="application/xml" href="comment.xsl"?&gt;</div>
+<div> &lt;top&gt;</div>
+<div> &nbsp; &lt;preceding-comment of="//aaa/bbb"/&gt; and &lt;following-comment of="//aaa/bbb"/&gt;</div>
+<div> &nbsp; &lt;aaa&gt;</div>
+<div> &nbsp; &nbsp; &lt;!--comment1--&gt;</div>
+<div> &nbsp; &nbsp; &lt;bbb&gt;1&lt;/bbb&gt;</div>
+<div> &nbsp; &nbsp; &lt;!--comment2--&gt;</div>
+<div> &nbsp; &lt;/aaa&gt;</div>
+<div> &lt;/top&gt;</div>
+     </div>
+    </sectin>
+
+    <section class="call">
+     <a name="usage_count"></a><a name="usage_sum"></a>
+     <h4>&lt;count of="…"&gt; and &lt;sum of="…"&gt;</h4>
+     <p>
+Get count of nodes and sum of number values of nodes at the specified path.
+     </p>
+     <div class="code">
+<div> &lt;?xml version="1.0" encoding="utf-8"?&gt;</div>
+<div> &lt;!-- count_and_sum.xsl --&gt;</div>
+<div> &lt;xsl:stylesheet version="1.0"</div>
+<div> &nbsp; xmlns:ut="https://github.com/xslet/2020/xslutil"</div>
+<div> &nbsp; xmlns:do="https://github.com/xslet/2020/xsldo"</div>
+<div> &nbsp; xmlns:book="https://github.com/xslet/2020/xslbook"</div>
+<div> &nbsp; xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;</div>
+<div> &nbsp; &lt;xsl:import href="xslbook-do.xsl"/&gt;</div>
+<div> &nbsp; &lt;xsl:template match="/top"&gt;</div>
+<div> &nbsp; &nbsp; &lt;html&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;body&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &nbsp; &lt;xsl:apply-templates select="count|sum|text()"/&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;/body&gt;</div>
+<div> &nbsp; &nbsp; &lt;/html&gt;</div>
+<div> &nbsp; &lt;/xsl:template&gt;</div>
+<div> &lt;/xsl:stylesheet&gt;</div>
+     </div>
+     <p>
+By using the above XSL file, the following XML file prints <code>3 and 6</code> on your Web browser.
+     </p>
+     <div class="code">
+<div> &lt;?xml version="1.0" encoding="utf-8"?&gt;</div>
+<div> &lt;?xml-stylesheet type="application/xml" href="count_and_sum.xsl"?&gt;</div>
+<div> &lt;top&gt;</div>
+<div> &nbsp; &lt;count of="//aaa/*"/&gt; and &lt;sum of="//aaa/*"/&gt;</div>
+<div> &nbsp; &lt;aaa&gt;</div>
+<div> &nbsp; &nbsp; &lt;bbb&gt;1&lt;/bbb&gt;</div>
+<div> &nbsp; &nbsp; &lt;ccc&gt;2&lt;/ccc&gt;</div>
+<div> &nbsp; &lt;/aaa&gt;</div>
+<div> &nbsp; &lt;aaa&gt;</div>
+<div> &nbsp; &nbsp; &lt;ddd&gt;3&lt;/ddd&gt;</div>
+<div> &nbsp; &lt;/aaa&gt;</div>
+<div> &lt;/top&gt;</div>
+     </div>
+    </sectin>
+
+    <section class="call">
+     <a name="usage_if"></a><a name="usage_choose"></a>
+     <h4>&lt;if of="…"&gt; and &lt;choose of="…"&gt;</h4>
+     <p>
+&lt;if&gt; element tests its condition and applies child nodes if the condition is satisfied.<br>
+&lt;choose&gt; element finds first &lt;when&gt; element of which condition is satisfied and applies child nodes of the &lt;when&gt; element.
+     </p>
+     <div class="code">
+<div> &lt;?xml version="1.0" encoding="utf-8"?&gt;</div>
+<div> &lt;!-- if_and_choose.xsl --&gt;</div>
+<div> &lt;xsl:stylesheet version="1.0"</div>
+<div> &nbsp; xmlns:ut="https://github.com/xslet/2020/xslutil"</div>
+<div> &nbsp; xmlns:do="https://github.com/xslet/2020/xsldo"</div>
+<div> &nbsp; xmlns:book="https://github.com/xslet/2020/xslbook"</div>
+<div> &nbsp; xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;</div>
+<div> &nbsp; &lt;xsl:import href="xslbook-do.xsl"/&gt;</div>
+<div> &nbsp; &lt;xsl:template match="/top"&gt;</div>
+<div> &nbsp; &nbsp; &lt;html&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;body&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &nbsp; &lt;xsl:apply-templates select="if|choose|text()"/&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;/body&gt;</div>
+<div> &nbsp; &nbsp; &lt;/html&gt;</div>
+<div> &nbsp; &lt;/xsl:template&gt;</div>
+<div> &lt;/xsl:stylesheet&gt;</div>
+     </div>
+     <p>
+By using the above XSL file, the following XML file prints <code>ABC2 and ABC2</code> on your Web browser.
+     </p>
+     <div class="code">
+<div> &lt;?xml version="1.0" encoding="utf-8"?&gt;</div>
+<div> &lt;?xml-stylesheet type="application/xml" href="if_and_choose.xsl"?&gt;</div>
+<div> &lt;top&gt;</div>
+<div> &nbsp; &lt;if of="//aaa/@b"/&gt;</div>
+<div> &nbsp; &nbsp; &lt;value of="//aaa/bbb[2]"/&gt;</div>
+<div> &nbsp; &lt;/if&gt;</div>
+<div> &nbsp; and</div>
+<div> &nbsp; &lt;choose of="//aaa/@b"/&gt;</div>
+<div> &nbsp; &nbsp; &lt;when eq="1"&gt;&lt;value of="//aaa/bbb[1]"/&gt;&lt;/when&gt;</div>
+<div> &nbsp; &nbsp; &lt;when eq="2"&gt;&lt;value of="//aaa/bbb[2]"/&gt;&lt;/when&gt;</div>
+<div> &nbsp; &nbsp; &lt;otherwise&gt;?&lt;/otherwise&gt;</div>
+<div> &nbsp; &lt;/choose&gt;</div>
+<div> &nbsp; &lt;aaa b="2"&gt;</div>
+<div> &nbsp; &nbsp; &lt;bbb&gt;ABC1&lt;/bbb&gt;</div>
+<div> &nbsp; &nbsp; &lt;bbb&gt;ABC2&lt;/bbb&gt;</div>
+<div> &nbsp; &lt;/aaa&gt;</div>
+<div> &lt;/top&gt;</div>
+     </div>
+    </sectin>
+
+    <section class="call">
+     <a name="usage_for_each"></a><a name="usage_for_times"></a><a name="usage_index"></a>
+     <h4>&lt;for each="…"&gt;, &lt;for times="…"&gt; and &lt;index of="…"&gt;</h4>
+     <p>
+&lt;for&gt; element loops to apply child nodes for each nodes at specified path or specified tiems.<br>
+&lt;index&gt; element outputs an index of the parent or the ancestor &lt;for&gt; element.
+     </p>
+     <div class="code">
+<div> &lt;?xml version="1.0" encoding="utf-8"?&gt;</div>
+<div> &lt;!-- for.xsl --&gt;</div>
+<div> &lt;xsl:stylesheet version="1.0"</div>
+<div> &nbsp; xmlns:ut="https://github.com/xslet/2020/xslutil"</div>
+<div> &nbsp; xmlns:do="https://github.com/xslet/2020/xsldo"</div>
+<div> &nbsp; xmlns:book="https://github.com/xslet/2020/xslbook"</div>
+<div> &nbsp; xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;</div>
+<div> &nbsp; &lt;xsl:import href="xslbook-do.xsl"/&gt;</div>
+<div> &nbsp; &lt;xsl:template match="/top"&gt;</div>
+<div> &nbsp; &nbsp; &lt;html&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;body&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &nbsp; &lt;xsl:apply-templates select="for|text()"/&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;/body&gt;</div>
+<div> &nbsp; &nbsp; &lt;/html&gt;</div>
+<div> &nbsp; &lt;/xsl:template&gt;</div>
+<div> &lt;/xsl:stylesheet&gt;</div>
+     </div>
+     <p>
+By using the above XSL file, the following XML file prints <code>1.1.ABC1, 1.2.ABC2, and 1.1.ABC1, 1.2.ABC2,</code> on your Web browser.
+     </p>
+     <div class="code">
+<div> &lt;?xml version="1.0" encoding="utf-8"?&gt;</div>
+<div> &lt;?xml-stylesheet type="application/xml" href="for.xsl"?&gt;</div>
+<div> &lt;top&gt;</div>
+<div> &nbsp; &lt;for index="i" each="//aaa"&gt;</div>
+<div> &nbsp; &nbsp; &lt;for each="bbb"&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;index of="i"/&gt;.&lt;index/&gt;.&lt;value/&gt;,</div>
+<div> &nbsp; &nbsp; &lt;/for&gt;</div>
+<div> &nbsp; &lt;/for&gt;</div>
+<div> &nbsp; and</div>
+<div> &nbsp; &lt;for index="i" times="1"&gt;</div>
+<div> &nbsp; &nbsp; &lt;for times="2"&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;index of="i"/&gt;.&lt;index/&gt;.&lt;value&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &nbsp; &lt;attr name="of"&gt;//aaa[&lt;index of="i"/&gt;]/bbb[&lt;index/&gt;]&lt;/attr&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;/value&gt;</div>
+<div> &nbsp; &nbsp; &lt;/for&gt;</div>
+<div> &nbsp; &lt;/for&gt;</div>
+<div> &nbsp; &lt;aaa&gt;</div>
+<div> &nbsp; &nbsp; &lt;bbb&gt;ABC1&lt;/bbb&gt;</div>
+<div> &nbsp; &nbsp; &lt;bbb&gt;ABC2&lt;/bbb&gt;</div>
+<div> &nbsp; &lt;/aaa&gt;</div>
+<div> &lt;/top&gt;</div>
+     </div>
+    </sectin>
+   </section>
+  </section>
+
+  <a name="apis"></a>
+  <section>
+   <h2>APIs</h2>
+   <p>
+Since xslbook-do is a XSL application, its own API document can be generated, too.<br>
+The generated API document is <a href="./api/xslbook-do.xml">here</a>.
+   </p>
+  </section>
+
+  <a name="tests"></a>
+  <section>
+   <h2>Tests</h2>
+   <p>
+This section provides the results of unit tests of match/named templates written in the API document.
+   </p>
+   <ul>
+    <li>
+     <a href="test/unit/get_data_url.test.xml">book:get_data_url</a>
+    </li>
+    <li>
+     <a href="test/unit/get_data_gid.test.xml">book:get_data_gid</a>
+    </li>
+    <li>
+     <a href="test/unit/get_attr.test.xml">book:get_attr</a>
+    </li>
+    <li>
+     <a href="test/unit/value.test.xml">&lt;value of="…"&gt;</a>
+    </li>
+    <li>
+     <a href="test/unit/values.test.xml">&lt;values of="…"&gt;</a>
+    </li>
+    <li>
+     <a href="test/unit/content.test.xml">&lt;content of="…"&gt;</a>
+    </li>
+    <li>
+     <a href="test/unit/contents.test.xml">&lt;contents of="…"&gt;</a>
+    </li>
+    <li>
+     <a href="test/unit/number.test.xml">&lt;number of="…"&gt;</a>
+    </li>
+    <li>
+     <a href="test/unit/numbers.test.xml">&lt;numbers of="…"&gt;</a>
+    </li>
+    <li>
+     <a href="test/unit/name.test.xml">&lt;name of="…"&gt;</a>
+    </li>
+    <li>
+     <a href="test/unit/names.test.xml">&lt;names of="…"&gt;</a>
+    </li>
+    <li>
+     <a href="test/unit/preceding-comment.test.xml">&lt;preceding-comment of="…"&gt;</a>
+    </li>
+    <li>
+     <a href="test/unit/following-comment.test.xml">&lt;following-comment of="…"&gt;</a>
+    </li>
+    <li>
+     <a href="test/unit/count.test.xml">&lt;count of="…"&gt;</a>
+    </li>
+    <li>
+     <a href="test/unit/sum.test.xml">&lt;sum of="…"&gt;</a>
+    </li>
+    <li>
+     <a href="test/unit/if.test.xml">&lt;if of="…"&gt;</a>
+    </li>
+    <li>
+     <a href="test/unit/choose.test.xml">&lt;choose of="…"&gt;</a>
+    </li>
+    <li>
+     <a href="test/unit/for_each.test.xml">&lt;for each="…"&gt;</a>
+    </li>
+    <li>
+     <a href="test/unit/for_times.test.xml">&lt;for times="…"&gt;</a>
+    </li>
+    <li>
+     <a href="test/unit/index.test.xml">&lt;index of="…"&gt;</a>
+    </li>
+   </ul>
+  </section>
+
+  <a name="links"></a>
+  <section>
+   <h2>Links</h2>
+   <p>
+xslbook-do is one of libraries for xslbook in xslet project.
+xslbook is a XSLT applet which displays a book-style document on Web browser.
+xslet is a project to develop Web applications/libraries with XSL (XSLT and XPath).
+   </p>
+   <ul>
+    <li>
+<a id="xslbook-do" href="https://github.com/xslet/xslbook-do">xslbook-do repository on GitHub</a>
+    </li>
+    <li>
+<a id="xslbook" href="https://github.com/xslet/xslbook">xslbook repository on GitHub</a>
+    </li>
+    <li>
+<a id="xslet" href="https://github.com/xslet">xslet project on GitHub</a>
+    </li>
+   </ul>
+   <p>
+xslbook-do depends on following xslet library.
+   </p>
+   <ul>
+    <li>
+<a id="xslutil" href="https://github.com/xslet/xslutil">xslutil repository on GitHub</a>
+    </li>
+    <li>
+<a id="xsldo" href="https://github.com/xslet/xsldo">xsldo repository on GitHub</a>
+    </li>
+   </ul>
+   <p>
+XSLT and XPath is the specifications specified by W3C.
+xslbook-do uses XSLT version 1.0 and XPath version 1.0 in it because Web browsers support them.
+   </p>
+   <ul>
+    <li>
+<a id="xslt1" href="https://www.w3.org/TR/1999/REC-xslt-19991116">XSLT 1.0 - W3C Recommendation</a>
+    </li>
+    <li>
+<a id="xpath1" href="https://www.w3.org/TR/1999/REC-xpath-19991116/">XPath 1.0 - W3C Recommendation</a>
+    </li>
+   </ul>
+   <p>
+In addition, xslbook-do uses XSLT version 3.0 and XPath version 3.0 in the build environment.
+   </p>
+   <ul>
+    <li>
+<a id="xslt3" href="https://www.w3.org/TR/xslt-30/">XSLT 3.0 - W3C Recommendation</a>
+    </li>
+    <li>
+<a id="xpath3" href="https://www.w3.org/TR/xpath-30/">XPath 3.0 - W3C Recommendation</a>
+    </li>
+   </ul>
+   <p>
+The xslbook-do also uses following application as tools in the build environment.
+   </p>
+   <ul>
+    <li>
+<a id="saxon" href="http://saxon.sourceforge.net/">Saxon for Java - Saxonica</a>
+    </li>
+    <li>
+<a id="ant" href="https://ant.apache.org/">Apache Ant - The Apache Software Foundation</a>
+    </li>
+    <li>
+<a id="tomcat" href="https://tomcat.apache.org/">Apache Tomcat - The Apache Software Foundation</a>
+    </li>
+    <li>
+<a id="sass" href="https://sass-lang.com/">SCSS - the Sass team</a>
+    </li>
+    <li>
+<a id="xsldoc" href="https://github.com/xslet/xsldoc">xsldoc repository on GitHub</a>
+    </li>
+   </ul>
+  </section>
+
+ </main>
+</body>
+</html>

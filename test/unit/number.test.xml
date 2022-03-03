@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="application/xml" href="unit-test.xsl"?>
+
+<describe title="&lt;number of=&quot;…&quot;&gt;">
+
+ <describe title="Use @of attribute">
+  <it title="should get a number value at specified path '.'">
+   <compute><number of=".">1<b>2<c>3</c>4</b>5</number></compute>
+   <expect>1</expect>
+  </it>
+
+
+  <it title="should get a number value at absolute path">
+   <compute><number of="/describe/dataset/aaa"/></compute>
+   <expect>12</expect>
+  </it>
+
+
+  <it title="should get a number value at relative path">
+   <compute><number of="aaa/bbb">
+    <aaa><bbb>987</bbb></aaa>
+   </number></compute>
+   <expect>987</expect>
+  </it>
+
+
+  <it title="should output NaN for non-number value">
+   <compute><number of="aaa/bbb">
+    <aaa><bbb>ABC</bbb></aaa>
+   </number></compute>
+   <expect>NaN</expect>
+  </it>
+
+
+  <it title="should get a number value at a path with an attribute">
+   <compute><number of="/describe/dataset/aaa/bbb[@cd='2']"/></compute>
+   <expect>56</expect>
+  </it>
+
+
+  <it title="should not get a number value of child or descendant element at specified path">
+   <compute><number of="/describe/dataset/aaa"/></compute>
+   <expect>12</expect>
+  </it>
+
+
+  <it title="should get a number value at a path with an index">
+   <compute><number of="/describe/dataset/aaa/bbb[2]"/></compute>
+   <expect>56</expect>
+  </it>
+
+
+  <it title="should get a number value at a path with indexes">
+   <compute><number of="/describe/dataset/aaa[2]/bbb[1]"/></compute>
+   <expect>789</expect>
+  </it>
+ </describe>
+
+
+ <describe title="Use attr[@name='of'] element">
+  <it title="should get a number value at absolute path">
+   <compute><number>
+    <attr name="of">/describe/dataset/aaa</attr>
+   </number></compute>
+   <expect>12</expect>
+  </it>
+
+
+  <it title="should get a number value at relative path">
+   <compute><number>
+    <attr name="of">aaa/bbb</attr>
+    <aaa><bbb>888</bbb></aaa>
+   </number></compute>
+   <expect>888</expect>
+  </it>
+ </describe>
+
+
+ <describe title="Use @prefix and @suffix attributes">
+  <it title="should print prefix and suffix by @prefix and @suffix attributes">
+   <compute><number of="." prefix="(" suffix=")">11<b>22<c>33</c>44</b>55</number></compute>
+   <expect>(11)</expect>
+  </it>
+ </describe>
+
+
+ <describe title="Use attr[@name'prefix'] and attr[@name='suffix'] elements">
+  <it title="should print prefix and suffix by &lt;attr&gt;">
+   <compute><number of=".">333
+    <attr name="prefix">(</attr>
+    <attr name="suffix">)</attr>
+   </number></compute>
+   <expect>(333)</expect>
+  </it>
+ </describe>
+
+
+ <describe title="Use @data-src attribute">
+  <it title="should get a number value of a node in the external file">
+   <compute><number of="/List/Item" data-src="data/number.data.xml"/></compute>
+   <expect>222</expect>
+  </it>
+ </describe>
+
+
+ <describe title="Use attr[@name='data-src'] element">
+  <it title="should get a number value of a node in the external file">
+   <compute><number of="/List/Item">
+    <attr name="data-src">data/number.data.xml</attr>
+   </number></compute>
+   <expect>222</expect>
+  </it>
+ </describe>
+
+
+ <dataset>
+  <aaa>12<bbb>34</bbb><bbb cd="2">56</bbb></aaa>
+  <aaa><bbb>789</bbb></aaa>
+ </dataset>
+
+</describe>
