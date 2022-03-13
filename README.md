@@ -5,7 +5,7 @@ A XSL library which provides XSLT match templates to operate XML data for [xslbo
 
 ## Namespace
 
-`xmlns:booko="https://github.com/xslet/2020/xslbook"`
+`xmlns:book="https://github.com/xslet/2020/xslbook"`
 
 
 ## API
