@@ -7,9 +7,9 @@
  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
  <!--**
-  Get an attribute value or &lt;attr&gt; element value of which @name attrbute is same with parameter `name`.
-  The attribute value takes priority over the &lt;attr&gt; element value.
-  If both the attribute and &lt;attr&gt; element are not present, then this returns an empty string.
+  Get an attribute value or <attr> element value of which @name attrbute is same with parameter `name`.
+  The attribute value takes priority over the <attr> element value.
+  If both the attribute and <attr> element are not present, then this returns an empty string.
  -->
  <xsl:template name="book:get_attr">
   <!--** The attribute name. -->
@@ -18,9 +18,9 @@
   <xsl:param name="data_url"/>
   <!--** A generated ID of a current node in a data source. -->
   <xsl:param name="data_gid"/>
-  <!--** Index of parent &lt;for&gt; element. -->
+  <!--** Index of parent <for> element. -->
   <xsl:param name="data_index"/>
-  <!--** Index set of ancestor &lt;for&gt; elements. -->
+  <!--** Index set of ancestor <for> elements. -->
   <xsl:param name="data_indexes"/>
   <!--** An argument which is passed to xsldo modules. -->
   <xsl:param name="arg0"/>

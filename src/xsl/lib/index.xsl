@@ -14,7 +14,7 @@
  <xsl:template match="index">
   <!--** Index of parent loop element. -->
   <xsl:param name="data_index"/>
-  <!--** Index set of ancestor &lt;for&gt; elements. -->
+  <!--** Index set of ancestor <for> elements. -->
   <xsl:param name="data_indexes"/>
   <!--** An URL of external data file from an ancestor element. -->
   <xsl:param name="data_url"/>

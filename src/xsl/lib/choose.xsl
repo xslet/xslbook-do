@@ -7,10 +7,10 @@
  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
  <!--**
-  Tests multiple conditions and applies a child element of a child &lt;when&gt; element of which the condition is satisfied or a child &lt;otherwise&gt; element.
-  If a &lt;when&gt; element has @of or @what attribute, its test compares the object of the node specified by these attributes with the value of the operator attribute.
-  If a &lt;when&gt; element has neither @of and @what attributes, its test compares the object of the node at the path specified by the choose's @of with the value of the operator attribute of the &lt;when&gt; element.
-  If there is no &lt;when&gt; element which satisfies its condition, a &lt;otherwise&gt; elements are applied.
+  Tests multiple conditions and applies a child element of a child <when> element of which the condition is satisfied or a child <otherwise> element.
+  If a <when> element has @of or @what attribute, its test compares the object of the node specified by these attributes with the value of the operator attribute.
+  If a <when> element has neither @of and @what attributes, its test compares the object of the node at the path specified by the choose's @of with the value of the operator attribute of the <when> element.
+  If there is no <when> element which satisfies its condition, a <otherwise> elements are applied.
   The operator attribute can take these options: @eq (equal), @ne (not equal), @lt (less than), @le (less than or equal), @gt (greater than), @ge (greater than or equal). These operators can be used at the same time.
 
     The object of a node which is used on testing can specified @what attribute. This attribute can take these options: "content", "value", "number", "name", "count", "sum", "index".
@@ -22,9 +22,9 @@
   <xsl:param name="data_url"/>
   <!--** A generated ID of a base node in a data source. -->
   <xsl:param name="data_gid"/>
-  <!--** Index of parent &lt;for&gt; element. -->
+  <!--** Index of parent <for> element. -->
   <xsl:param name="data_index"/>
-  <!--** Index set of ancestor &lt;for&gt; elements. -->
+  <!--** Index set of ancestor <for> elements. -->
   <xsl:param name="data_indexes"/>
   <!--** Elements which are allowed to be applied. -->
   <xsl:param name="allow"/>
