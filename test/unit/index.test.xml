@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="application/xml" href="unit-test.xsl"?>
+
+<describe title="&lt;index of=&quot;…&quot;&gt;">
+
+  <describe title="Index of parent for element with @each">
+   <it title="should get indexes of parent for element">
+    <compute><for each="//aaa/bbb"><index/><value/></for></compute>
+    <expect>1C2B3D4A</expect>
+   </it>
+
+
+   <it title="should get indexes of parent for element with @index">
+    <compute><for index="I" each="//aaa/bbb"><index/><value/></for></compute>
+    <expect>1C2B3D4A</expect>
+   </it>
+
+
+   <it title="should get indexes of parent for element by @of">
+    <compute><for index="I" each="//aaa/bbb"><index of="I"/><value/></for></compute>
+    <expect>1C2B3D4A</expect>
+   </it>
+
+
+   <it title="should get indexes of parent for element with @reverse">
+    <compute><for each="//aaa/bbb" reverse="true"><index/><value/></for></compute>
+    <expect>1A2D3B4C</expect>
+   </it>
+
+
+   <it title="should get indexes of parent for element with @reverse and @index">
+    <compute><for index="I" each="//aaa/bbb" reverse="true"><index of="I"/><value/></for></compute>
+    <expect>1A2D3B4C</expect>
+   </it>
+
+
+   <it title="should get indexes of parent for element with sorting">
+    <compute><for each="//aaa/bbb" sort-by="."><index/><value/></for></compute>
+    <expect>1A2B3C4D</expect>
+   </it>
+
+
+   <it title="should get indexes of parent for element with sorting and @index">
+    <compute><for index="I" each="//aaa/bbb" sort-by="."><index of="I"/><value/></for></compute>
+    <expect>1A2B3C4D</expect>
+   </it>
+  </describe>
+
+  <describe title="Index of parent for element with @times">
+   <it title="should get indexes of parent for element">
+    <compute><for times="3"><index/><value of="//aaa/bbb"/></for></compute>
+    <expect>1C2C3C</expect>
+   </it>
+
+
+   <it title="should get indexes of parent for element with @index">
+    <compute><for index="I" times="3"><index/><value of="//aaa/bbb"/></for></compute>
+    <expect>1C2C3C</expect>
+   </it>
+
+
+   <it title="should get indexes of parent for element by @of">
+    <compute><for index="I" times="3"><index of="I"/><value of="//aaa/bbb"/></for></compute>
+    <expect>1C2C3C</expect>
+   </it>
+  </describe>
+
+
+  <describe title="Index of ancestor for element by @of">
+   <it title="should get indexes of nested for elements by @of">
+    <compute><for index="i" each="//aaa"><for index="j" each="bbb"><index of="i"/>.<index of="j"/>:<value/>,</for></for></compute>
+    <expect>1.1:C,1.2:B,2.1:D,2.2:A,</expect>
+   </it>
+
+
+   <it title="should get indexes of nested for elements interlaid if elements by @of">
+    <compute><for index="i" each="//aaa"><if of="//aaa/@a" eq="A"><for index="j" each="bbb"><if of="." ne="x"><index of="i"/>.<index of="j"/>:<value/>,</if></for></if></for></compute>
+    <expect>1.1:C,1.2:B,2.1:D,2.2:A,</expect>
+   </it>
+  </describe>
+
+
+  <describe title="Index with @prefix and @suffix">
+   <it title="should get indexes of parent for element">
+    <compute><for each="//aaa/bbb"><index prefix="(" suffix=")"/><value/></for></compute>
+    <expect>(1)C(2)B(3)D(4)A</expect>
+   </it>
+  </describe>
+
+
+  <describe title="Index with prefix and suffix by attr elements">
+   <it title="should get indexes of parent for element">
+    <compute><for each="//aaa/bbb"><index><attr name="prefix">(</attr><attr name="suffix">)</attr></index><value/></for></compute>
+    <expect>(1)C(2)B(3)D(4)A</expect>
+   </it>
+  </describe>
+
+
+  <aaa a="A">
+   <bbb>C</bbb>
+   <bbb>B</bbb>
+  </aaa>
+  <aaa>
+   <bbb>D</bbb>
+   <bbb>A</bbb>
+  </aaa>
+
+</describe>

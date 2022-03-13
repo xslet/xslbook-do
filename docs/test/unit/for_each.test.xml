@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="application/xml" href="unit-test.xsl"?>
+
+<describe title="&lt;for each=&quot;…&quot;&gt;">
+
+ <describe title="Use @each attribute">
+  <it title="should repeat as many times as elements at path by @each attribute">
+   <compute><for each="//Aaa/Bbb">Repeated.</for></compute>
+   <expect>Repeated.Repeated.Repeated.</expect>
+  </it>
+
+  <it title="should repeat as many times as attributes at path by @each attribute">
+   <compute><for each="//Aaa/Bbb/@b">Repeated.</for></compute>
+   <expect>Repeated.Repeated.</expect>
+  </it>
+
+
+  <it title="should repeat as many times as nodes at path with condition by @each attribute">
+   <compute><for each="//Aaa/Bbb[@s ge 2]">Repeated.</for></compute>
+   <expect>Repeated.Repeated.</expect>
+  </it>
+
+
+  <it title="should repeat values of elements at path with @each attribute">
+   <compute><for each="//Aaa/Bbb"><value of="." prefix="(" suffix=")"/></for></compute>
+   <expect>(ABC)(JKL)(VW)</expect>
+  </it>
+
+
+  <it title="should repeat values of attributes at path with @each attribute">
+   <compute><for each="//Aaa/Bbb/@s"><value of="." prefix="(" suffix=")"/></for></compute>
+   <expect>(2)(3)(1)</expect>
+  </it>
+
+
+  <it title="should repeat values of elements with nested for">
+   <compute><for each="//Aaa"><for each="Bbb"><value of="." prefix="(" suffix=")"/></for></for></compute>
+   <expect>(ABC)(JKL)(VW)</expect>
+  </it>
+
+
+  <it title="should repeat values of attribute with nested for">
+   <compute><for each="//Aaa"><for each="Bbb"><for each="@s"><value of="." prefix="(" suffix=")"/></for></for></for></compute>
+   <expect>(2)(3)(1)</expect>
+  </it>
+ </describe>
+
+
+ <describe title="Use attr[@name='each'] element">
+  <it title="should repeat as many times as elements at paths by &lt;attr name=&quot;each&quot;&gt;">
+   <compute><for><attr name="each">//Aaa/Bbb</attr>Repeated.</for></compute>
+   <expect>Repeated.Repeated.Repeated.</expect>
+  </it>
+ </describe>
+
+
+ <describe title="Use @reverse attribute">
+  <it title="should repeat values of elements at path with @each attribute in reverse">
+   <compute><for each="//Aaa/Bbb" reverse="true"><value of="." prefix="(" suffix=")"/></for></compute>
+   <expect>(VW)(JKL)(ABC)</expect>
+  </it>
+
+
+  <it title="should repeat values of attributes at path with @each attribute in reverse">
+   <compute><for each="//Aaa/Bbb/@s" reverse="true"><value of="." prefix="(" suffix=")"/></for></compute>
+   <expect>(1)(3)(2)</expect>
+  </it>
+
+
+  <it title="should repeat values of elements with nested for in reverse">
+   <compute><for each="//Aaa"><for each="Bbb" reverse="true"><value of="." prefix="(" suffix=")"/></for></for></compute>
+   <expect>(JKL)(ABC)(VW)</expect>
+  </it>
+
+
+  <it title="should repeat values of attribute with nested for in reverse">
+   <compute><for each="//Aaa"><for each="Bbb" reverse="true"><for each="@s"><value of="." prefix="(" suffix=")"/></for></for></for></compute>
+   <expect>(3)(2)(1)</expect>
+  </it>
+ </describe>
+
+
+ <describe title="Use attr[@name='reverse'] element">
+  <it title="should repeat values of elements at path with @each attribute in reverse">
+   <compute><for each="//Aaa/Bbb"><attr name="reverse">true</attr><value of="." prefix="(" suffix=")"/></for></compute>
+   <expect>(VW)(JKL)(ABC)</expect>
+  </it>
+ </describe>
+
+
+ <describe title="Use @sort-by attributes">
+  <it title="should sort by child elements">
+   <compute><for each="//Aaa/Bbb" sort-by="Ccc"><value of="." prefix="(" suffix=")"/></for></compute>
+   <expect>(JKL)(VW)(ABC)</expect>
+  </it>
+
+
+  <it title="should sort by attributes">
+   <compute><for each="//Aaa/Bbb" sort-by="@s"><value of="." prefix="(" suffix=")"/></for></compute>
+   <expect>(VW)(ABC)(JKL)</expect>
+  </it>
+
+
+  <it title="should sort by current elements">
+   <compute><for each="//Aaa/Bbb/Ccc" sort-by="."><value of="." prefix="(" suffix=")"/></for></compute>
+   <expect>(iMNO)(jY)(kDEF)(PQR)</expect>
+  </it>
+
+
+  <it title="should sort by current attributes">
+   <compute><for each="//Aaa/Bbb/@s" sort-by="."><value of="." prefix="(" suffix=")"/></for></compute>
+   <expect>(1)(2)(3)</expect>
+  </it>
+
+
+  <it title="should sort by child elements in reverse">
+   <compute><for each="//Aaa/Bbb" sort-by="Ccc" reverse="true"><value of="." prefix="(" suffix=")"/></for></compute>
+   <expect>(ABC)(VW)(JKL)</expect>
+  </it>
+
+
+  <it title="should sort by attributes in reverse">
+   <compute><for each="//Aaa/Bbb" sort-by="@s" reverse="true"><value of="." prefix="(" suffix=")"/></for></compute>
+   <expect>(JKL)(ABC)(VW)</expect>
+  </it>
+
+
+  <it title="should sort by current elements in reverse">
+   <compute><for each="//Aaa/Bbb/Ccc" sort-by="." reverse="true"><value of="." prefix="(" suffix=")"/></for></compute>
+   <expect>(PQR)(kDEF)(jY)(iMNO)</expect>
+  </it>
+
+
+  <it title="should sort by current attributes in reverse">
+   <compute><for each="//Aaa/Bbb/@s" sort-by="." reverse="true"><value of="." prefix="(" suffix=")"/></for></compute>
+   <expect>(3)(2)(1)</expect>
+  </it>
+ </describe>
+
+
+ <describe title="Use attr[@name='sort-by'] element">
+  <it title="should sort by child elements">
+   <compute><for each="//Aaa/Bbb"><attr name="sort-by">Ccc</attr><value of="." prefix="(" suffix=")"/></for></compute>
+   <expect>(JKL)(VW)(ABC)</expect>
+  </it>
+ </describe>
+
+
+ <describe title="Use @sort-dir attribute">
+  <it title="should sort by child elements in ascending order">
+   <compute><for each="//Aaa/Bbb" sort-by="Ccc" sort-dir="asc"><value of="." prefix="(" suffix=")"/></for></compute>
+   <expect>(JKL)(VW)(ABC)</expect>
+  </it>
+
+
+  <it title="should sort by child elements in descending order">
+   <compute><for each="//Aaa/Bbb" sort-by="Ccc" sort-dir="desc"><value of="." prefix="(" suffix=")"/></for></compute>
+   <expect>(ABC)(VW)(JKL)</expect>
+  </it>
+
+
+  <it title="should sort by child elements in ascending order and reverse">
+   <compute><for each="//Aaa/Bbb" sort-by="Ccc" sort-dir="asc" reverse="true"><value of="." prefix="(" suffix=")"/></for></compute>
+   <expect>(ABC)(VW)(JKL)</expect>
+  </it>
+
+
+  <it title="should sort by child elements in descending order and reverse">
+   <compute><for each="//Aaa/Bbb" sort-by="Ccc" sort-dir="desc" reverse="true"><value of="." prefix="(" suffix=")"/></for></compute>
+   <expect>(JKL)(VW)(ABC)</expect>
+  </it>
+ </describe>
+
+
+ <describe title="Use attr[@name='sort-dir'] element">
+  <it title="should sort by child elements in ascending order">
+   <compute><for each="//Aaa/Bbb" sort-by="Ccc"><attr name="sort-dir">asc</attr><value of="." prefix="(" suffix=")"/></for></compute>
+   <expect>(JKL)(VW)(ABC)</expect>
+  </it>
+
+
+  <it title="should sort by child elements in descending order">
+   <compute><for each="//Aaa/Bbb" sort-by="Ccc"><attr name="sort-dir">desc</attr><value of="." prefix="(" suffix=")"/></for></compute>
+   <expect>(ABC)(VW)(JKL)</expect>
+  </it>
+ </describe>
+
+
+ <describe title="Use @sort-type attribute">
+  <it title="should sort by child elements as number">
+   <compute><for each="//Aaa/Bbb" sort-by="Ccc/@c" sort-type="number"><value of="." prefix="(" suffix=")"/></for></compute>
+   <expect>(VW)(JKL)(ABC)</expect>
+  </it>
+
+
+  <it title="should sort by child elements as text">
+   <compute><for each="//Aaa/Bbb" sort-by="Ccc/@c" sort-type="text"><value of="." prefix="(" suffix=")"/></for></compute>
+   <expect>(JKL)(ABC)(VW)</expect>
+  </it>
+ </describe>
+
+
+ <describe title="Use attr[@name='sort-type'] element">
+  <it title="should sort by child elements as number">
+   <compute><for each="//Aaa/Bbb" sort-by="Ccc/@c"><attr name="sort-type">number</attr><value of="." prefix="(" suffix=")"/></for></compute>
+   <expect>(VW)(JKL)(ABC)</expect>
+  </it>
+
+
+  <it title="should sort by child elements as text">
+   <compute><for each="//Aaa/Bbb" sort-by="Ccc/@c"><attr name="sort-type">text</attr><value of="." prefix="(" suffix=")"/></for></compute>
+   <expect>(JKL)(ABC)(VW)</expect>
+  </it>
+ </describe>
+
+
+ <describe title="Use @data-src attribute">
+  <it title="should loop for each nodes in the external file">
+   <compute><for each="/List/Item" data-src="data/for_each.data.xml"><value of="."/></for></compute>
+   <expect>Value1Value2Value3</expect>
+  </it>
+
+
+  <it title="should loop for each nodes in the external file in reverse">
+   <compute><for each="/List/Item" data-src="data/for_each.data.xml" reverse="true"><value of="."/></for></compute>
+   <expect>Value3Value2Value1</expect>
+  </it>
+
+
+  <it title="should sort nodes in the external file with @sort-by attribute">
+   <compute><for each="/List/Item" data-src="data/for_each.data.xml" sort-by="@sort"><value of="."/></for></compute>
+   <expect>Value1Value3Value2</expect>
+  </it>
+
+
+  <it title="should sort nodes in the external file with @sort-by and @sort-type attributes(='number')">
+   <compute><for each="/List/Item" data-src="data/for_each.data.xml" sort-by="@sort" sort-type="number"><value of="."/></for></compute>
+   <expect>Value2Value1Value3</expect>
+  </it>
+ </describe>
+
+
+ <describe title="Use attr[@name='data-src'] element">
+  <it title="should loop for each nodes in the external file">
+   <compute><for each="/List/Item"><attr name="data-src">data/for_each.data.xml</attr><value of="."/></for></compute>
+   <expect>Value1Value2Value3</expect>
+  </it>
+ </describe>
+
+
+
+ <Aaa>
+  <Bbb b="1" s="2">ABC<Ccc c="12">kDEF</Ccc>GHI</Bbb>
+  <Bbb s="3">JKL<Ccc c="10">iMNO</Ccc><Ccc c="21">PQR</Ccc>STU</Bbb>
+ </Aaa>
+ <Aaa>
+  <Bbb b="3" s="1">VW<Ccc c="3">jY</Ccc>Z</Bbb>
+ </Aaa>
+
+</describe>

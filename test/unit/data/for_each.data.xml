@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<List>
+ <Item id="item-1" sort="12">Value1</Item>
+ <Item id="item-2" sort="3">Value2</Item>
+ <Item id="item-3" sort="15">Value3</Item>
+</List>
