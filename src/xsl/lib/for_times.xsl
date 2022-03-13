@@ -9,7 +9,7 @@
  <!--
   Loop child nodes for times specified by @times attribute.
 
-  @index attribute specifies the index ID for this loop. If this ID is specified, the current index of this loop can be obtained by descendant &lt; index&gt; element, Unless, only child &lt;index&gt; can obtain this current index.
+  @index attribute specifies the index ID for this loop. If this ID is specified, the current index of this loop can be obtained by descendant <index> element, Unless, only child <index> can obtain this current index.
 
   If @data-src attribute is present, this template loops for nodes in the external file by this attribute.
  -->
@@ -18,9 +18,9 @@
   <xsl:param name="data_url"/>
   <!--** A generated ID of a base node in a data source. -->
   <xsl:param name="data_gid"/>
-  <!--** Index of parent &lt;for&gt; element. -->
+  <!--** Index of parent <for> element. -->
   <xsl:param name="data_index"/>
-  <!--** Index set of ancestor &lt;for&gt; elements. -->
+  <!--** Index set of ancestor <for> elements. -->
   <xsl:param name="data_indexes"/>
   <!--** Elements which are allowed to be applied. -->
   <xsl:param name="allow"/>

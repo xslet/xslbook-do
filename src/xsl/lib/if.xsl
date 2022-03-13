@@ -10,7 +10,7 @@
   Tests a condition and applies child elements if the condition is satisfied.
   A condition is the comparision of the object of the node at the path specified by @of and the value of the operator attribute: @eq (equal), @ne (not equal), @lt (less than), @le (less than or equal), @gt (greater than), @ge (greather than or equal). These operators can be used at the same time.
 
-  If child &lt;then&gt; and &lt;else&gt; elements are present, this template applys child &lt;then&gt; elements if the test is passed and applys the &lt;else&gt; elements if not.
+  If child <then> and <else> elements are present, this template applys child <then> elements if the test is passed and applys the <else> elements if not.
 
   The object of a node which is used on testing can specified @what attribute. This attribute can take these options: "content", "value", "number", "name", "count", "sum", "index".
 
@@ -21,9 +21,9 @@
   <xsl:param name="data_url"/>
   <!--** A generated ID of a base node in a data source. -->
   <xsl:param name="data_gid"/>
-  <!--** Index of parent &lt;for&gt; element. -->
+  <!--** Index of parent <for> element. -->
   <xsl:param name="data_index"/>
-  <!--** Index set of ancestor &lt;for&gt; elements. -->
+  <!--** Index set of ancestor <for> elements. -->
   <xsl:param name="data_indexes"/>
   <!--** Elements which are allowed to be applied. -->
   <xsl:param name="allow"/>

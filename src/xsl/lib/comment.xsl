@@ -17,9 +17,9 @@
   <xsl:param name="data_url"/>
   <!--** A generated ID of a base node in a data source. -->
   <xsl:param name="data_gid"/>
-  <!--** Index of parent &lt;for&gt; element. -->
+  <!--** Index of parent <for> element. -->
   <xsl:param name="data_index"/>
-  <!--** Index set of ancestor &lt;for&gt; elements. -->
+  <!--** Index set of ancestor <for> elements. -->
   <xsl:param name="data_indexes"/>
   <xsl:variable name="_data_url">
    <xsl:call-template name="book:get_data_url">
@@ -81,9 +81,9 @@
   <xsl:param name="data_url"/>
   <!--** A generated ID of a base node in a data source. -->
   <xsl:param name="data_gid"/>
-  <!--** Index of parent &lt;for&gt; element. -->
+  <!--** Index of parent <for> element. -->
   <xsl:param name="data_index"/>
-  <!--** Index set of ancestor &lt;for&gt; elements. -->
+  <!--** Index set of ancestor <for> elements. -->
   <xsl:param name="data_indexes"/>
   <xsl:variable name="_data_url">
    <xsl:call-template name="book:get_data_url">
