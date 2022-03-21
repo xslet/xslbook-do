@@ -64,6 +64,14 @@
    </value></compute>
    <expect>CCC</expect>
   </it>
+
+
+  <it title="should get a value at relative path with &lt;attr&gt; element">
+   <compute><value><attr name="of" of="p/q"><p><q>aaa/bbb</q></p></attr>
+    <aaa><bbb>CCC</bbb></aaa>
+   </value></compute>
+   <expect>CCC</expect>
+  </it>
  </describe>
 
 
