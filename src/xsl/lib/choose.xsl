@@ -68,7 +68,7 @@
      <xsl:with-param name="data_indexes" select="$data_indexes"/>
     </xsl:call-template>
    </xsl:variable>
-    <xsl:call-template name="book:_get_evaluated_object">
+    <xsl:call-template name="book:_get_object">
      <xsl:with-param name="path" select="$_path"/>
      <xsl:with-param name="what" select="$_what"/>
      <xsl:with-param name="data_url" select="$_data_url"/>
@@ -145,7 +145,7 @@
        <xsl:with-param name="data_indexes" select="$data_indexes"/>
       </xsl:call-template>
      </xsl:variable>
-     <xsl:call-template name="book:_get_evaluated_object">
+     <xsl:call-template name="book:_get_object">
       <xsl:with-param name="data_url" select="$_data_url"/>
       <xsl:with-param name="data_gid" select="$_data_gid"/>
       <xsl:with-param name="index_set" select="$data_indexes"/>
