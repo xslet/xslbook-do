@@ -12,7 +12,7 @@
 
   If child <then> and <else> elements are present, this template applys child <then> elements if the test is passed and applys the <else> elements if not.
 
-  The object of a node which is used on testing can specified @what attribute. This attribute can take these options: "content", "value", "number", "name", "count", "sum", "index".
+  The object of a node which is used on testing can specified @what attribute. This attribute can take these options: "value"(default), "content", "number", "name", "count", "sum", "index".
 
   If @data-src attribute is present, this template uses a value of a node in the external file specified by this attribute for testing the condition, but not used for applying child elements.
  -->
@@ -145,7 +145,7 @@
    <xsl:when test="string-length($what) = 0">
     <xsl:call-template name="do:first_object_by_path">
      <xsl:with-param name="path" select="$path"/>
-     <xsl:with-param name="what">content</xsl:with-param>
+     <xsl:with-param name="what">text</xsl:with-param>
      <xsl:with-param name="data_url" select="$data_url"/>
      <xsl:with-param name="data_gid" select="$data_gid"/>
     </xsl:call-template>

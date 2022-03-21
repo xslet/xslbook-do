@@ -13,7 +13,7 @@
   If there is no <when> element which satisfies its condition, a <otherwise> elements are applied.
   The operator attribute can take these options: @eq (equal), @ne (not equal), @lt (less than), @le (less than or equal), @gt (greater than), @ge (greater than or equal). These operators can be used at the same time.
 
-    The object of a node which is used on testing can specified @what attribute. This attribute can take these options: "content", "value", "number", "name", "count", "sum", "index".
+    The object of a node which is used on testing can specified @what attribute. This attribute can take these options: "value"(default), "content", "number", "name", "count", "sum", "index".
 
   If @data-src attribute is present, this template uses a value of a node in the external file specified by this attribute for testing the condition, but not used for applying child elements.
  -->
@@ -48,33 +48,35 @@
     <xsl:with-param name="data_gid" select="$data_gid"/>
    </xsl:call-template>
   </xsl:variable>
-  <xsl:variable name="_path">
-   <xsl:call-template name="book:get_attr">
-    <xsl:with-param name="name">of</xsl:with-param>
-    <xsl:with-param name="data_url" select="$data_url"/>
-    <xsl:with-param name="data_gid" select="$data_gid"/>
-    <xsl:with-param name="data_index" select="$data_index"/>
-    <xsl:with-param name="data_indexes" select="$data_indexes"/>
-   </xsl:call-template>
-  </xsl:variable>
-  <xsl:variable name="_what">
-   <xsl:call-template name="book:get_attr">
-    <xsl:with-param name="name">what</xsl:with-param>
-    <xsl:with-param name="data_url" select="$data_url"/>
-    <xsl:with-param name="data_gid" select="$data_gid"/>
-    <xsl:with-param name="data_index" select="$data_index"/>
-    <xsl:with-param name="data_indexes" select="$data_indexes"/>
-   </xsl:call-template>
-  </xsl:variable>
   <xsl:variable name="_result">
-   <xsl:call-template name="book:_get_evaluated_object">
-    <xsl:with-param name="path" select="$_path"/>
-    <xsl:with-param name="what" select="$_what"/>
-    <xsl:with-param name="data_url" select="$_data_url"/>
-    <xsl:with-param name="data_gid" select="$_data_gid"/>
-    <xsl:with-param name="index" select="$data_index"/>
-    <xsl:with-param name="index_set" select="$data_indexes"/>
-   </xsl:call-template>
+   <xsl:if test="not(boolean(when/@of) or boolean(when/attr[@name='of']))">
+   <xsl:variable name="_path">
+    <xsl:call-template name="book:get_attr">
+     <xsl:with-param name="name">of</xsl:with-param>
+     <xsl:with-param name="data_url" select="$data_url"/>
+     <xsl:with-param name="data_gid" select="$data_gid"/>
+     <xsl:with-param name="data_index" select="$data_index"/>
+     <xsl:with-param name="data_indexes" select="$data_indexes"/>
+    </xsl:call-template>
+   </xsl:variable>
+   <xsl:variable name="_what">
+    <xsl:call-template name="book:get_attr">
+     <xsl:with-param name="name">what</xsl:with-param>
+     <xsl:with-param name="data_url" select="$data_url"/>
+     <xsl:with-param name="data_gid" select="$data_gid"/>
+     <xsl:with-param name="data_index" select="$data_index"/>
+     <xsl:with-param name="data_indexes" select="$data_indexes"/>
+    </xsl:call-template>
+   </xsl:variable>
+    <xsl:call-template name="book:_get_evaluated_object">
+     <xsl:with-param name="path" select="$_path"/>
+     <xsl:with-param name="what" select="$_what"/>
+     <xsl:with-param name="data_url" select="$_data_url"/>
+     <xsl:with-param name="data_gid" select="$_data_gid"/>
+     <xsl:with-param name="index" select="$data_index"/>
+     <xsl:with-param name="index_set" select="$data_indexes"/>
+    </xsl:call-template>
+   </xsl:if>
   </xsl:variable>
   <xsl:variable name="_when_count">
    <xsl:value-of select="count(when)"/>
