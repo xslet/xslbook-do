@@ -4,28 +4,28 @@
 <describe title="&lt;if of=&quot;…&quot;&gt;">
 
  <describe title="Use @of attribute">
-  <it title="should get content of a node at the specified path">
-   <compute><if of="//Aaa/Bbb/Ccc" eq="Abcd1">Pass</if></compute>
+  <it title="should get value of a node at the specified path and it matches the condition">
+   <compute><if of="//Aaa/Bbb/Ccc" eq="Ab">Pass</if></compute>
    <expect>Pass</expect>
   </it>
 
 
-  <it title="should get content of a node at the specified path">
-   <compute><if of="//Aaa/Bbb/Ccc" eq="Abcd2">Pass</if></compute>
+  <it title="should get value of a node at the specified path but it does not match the condition">
+   <compute><if of="//Aaa/Bbb/Ccc" eq="Abcd1">Pass</if></compute>
    <expect></expect>
   </it>
  </describe>
 
 
  <describe title="Use &lt;attr name=&quot;of&quot;&gt; element">
-  <it title="should get content of a node at the specified path">
-   <compute><if eq="Abcd1"><attr name="of">//Aaa/Bbb/Ccc</attr>Pass</if></compute>
+  <it title="should get value of a node at the specified path and it matches the condition">
+   <compute><if eq="Ab"><attr name="of">//Aaa/Bbb/Ccc</attr>Pass</if></compute>
    <expect>Pass</expect>
   </it>
 
 
-  <it title="should get content of a node at the specified path">
-   <compute><if eq="Abcd2"><attr name="of">//Aaa/Bbb/Ccc</attr>Pass</if></compute>
+  <it title="should get value of a node at the specified path but it does not match the condition">
+   <compute><if eq="Abcd1"><attr name="of">//Aaa/Bbb/Ccc</attr>Pass</if></compute>
    <expect></expect>
   </it>
  </describe>
@@ -212,8 +212,8 @@
 
 
  <describe title="Use @what attribute">
-  <it title="should evaluate a content of a node in a condition if @what is not specified">
-   <compute><if of="//Aaa/Bbb/Ccc" eq="Abcd1">Pass</if></compute>
+  <it title="should evaluate a value of a node in a condition if @what is not specified">
+   <compute><if of="//Aaa/Bbb/Ccc" eq="Ab">Pass</if></compute>
    <expect>Pass</expect>
   </it>
 
@@ -388,12 +388,12 @@
 
  <describe title="Use &lt;then&gt; element">
   <it title="should apply then element if it exists and the condition is passed">
-   <compute><if of="//Aaa/Bbb/Ccc" eq="Abcd1">Pass<then>OK</then></if></compute>
+   <compute><if of="//Aaa/Bbb/Ccc" eq="Ab">Pass<then>OK</then></if></compute>
    <expect>OK</expect>
   </it>
 
   <it title="should not apply then element if exists and the condition is not passed">
-   <compute><if of="//Aaa/Bbb/Ccc" eq="Abcd2">Pass<then>OK</then></if></compute>
+   <compute><if of="//Aaa/Bbb/Ccc" eq="Abcd1">Pass<then>OK</then></if></compute>
    <expect></expect>
   </it>
  </describe>
@@ -401,12 +401,12 @@
 
  <describe title="Use &lt;else&gt; element">
   <it title="should apply else element if it exists and the condition is not passed">
-   <compute><if of="//Aaa/Bbb/Ccc" eq="Abcd2">Pass<else>NG</else></if></compute>
+   <compute><if of="//Aaa/Bbb/Ccc" eq="Abcd1">Pass<else>NG</else></if></compute>
    <expect>NG</expect>
   </it>
 
   <it title="should not apply else element if exists and the condition is passed">
-   <compute><if of="//Aaa/Bbb/Ccc" eq="Abcd1">Pass<else>NG</else></if></compute>
+   <compute><if of="//Aaa/Bbb/Ccc" eq="Ab">Pass<else>NG</else></if></compute>
    <expect></expect>
   </it>
  </describe>
@@ -414,12 +414,12 @@
 
  <describe title="Use both &lt;then&gt; and &lt;else&gt; element">
   <it title="should apply then element if exists and the condition is passed">
-   <compute><if of="//Aaa/Bbb/Ccc" eq="Abcd1">Pass<then>OK</then><else>NG</else></if></compute>
+   <compute><if of="//Aaa/Bbb/Ccc" eq="Ab">Pass<then>OK</then><else>NG</else></if></compute>
    <expect>OK</expect>
   </it>
 
   <it title="should apply else element if exists and the condition is not passed">
-   <compute><if of="//Aaa/Bbb/Ccc" eq="Abcd2">Pass<then>OK</then><else>NG</else></if></compute>
+   <compute><if of="//Aaa/Bbb/Ccc" eq="Abcd1">Pass<then>OK</then><else>NG</else></if></compute>
    <expect>NG</expect>
   </it>
  </describe>
