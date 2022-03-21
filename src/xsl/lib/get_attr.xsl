@@ -44,15 +44,29 @@
    </xsl:when>
    <xsl:otherwise>
     <xsl:for-each select="attr[@name=$name]">
-     <xsl:apply-templates>
-      <xsl:with-param name="data_url" select="$_data_url"/>
-      <xsl:with-param name="data_gid" select="$_data_gid"/>
-      <xsl:with-param name="data_index" select="$data_index"/>
-      <xsl:with-param name="data_indexes" select="$data_indexes"/>
-      <xsl:with-param name="arg0" select="$arg0"/>
-      <xsl:with-param name="arg1" select="$arg1"/>
-      <xsl:with-param name="arg2" select="$arg2"/>
-     </xsl:apply-templates>
+     <xsl:choose>
+      <xsl:when test="boolean(@of)">
+       <xsl:call-template name="book:_get_object">
+        <xsl:with-param name="path" select="@of"/>
+        <xsl:with-param name="what" select="@what"/>
+        <xsl:with-param name="data_url" select="$_data_url"/>
+        <xsl:with-param name="data_gid" select="$_data_gid"/>
+        <xsl:with-param name="index" select="$data_index"/>
+        <xsl:with-param name="index_set" select="$data_indexes"/>
+       </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+       <xsl:apply-templates>
+        <xsl:with-param name="data_url" select="$_data_url"/>
+        <xsl:with-param name="data_gid" select="$_data_gid"/>
+        <xsl:with-param name="data_index" select="$data_index"/>
+        <xsl:with-param name="data_indexes" select="$data_indexes"/>
+        <xsl:with-param name="arg0" select="$arg0"/>
+        <xsl:with-param name="arg1" select="$arg1"/>
+        <xsl:with-param name="arg2" select="$arg2"/>
+       </xsl:apply-templates>
+      </xsl:otherwise>
+     </xsl:choose>
     </xsl:for-each>
    </xsl:otherwise>
   </xsl:choose>

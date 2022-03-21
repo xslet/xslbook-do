@@ -45,4 +45,100 @@
   <expect></expect>
  </it>
 
+
+ <it title="should get an attribute value with &lt;attr name=&quot;…&quot; of=&quot;…&quot;/&gt;">
+  <compute name="book:get_attr">
+   <param name="name">attr-name</param>
+   <attr name="attr-name" of="//Aaa/Bbb/Ccc"/>
+  </compute>
+  <expect>abc</expect>
+ </it>
+
+
+ <it title="should get an attribute value with &lt;attr name=&quot;…&quot; what=&quot;content&quot; of=&quot;…&quot;/&gt;">
+  <compute name="book:get_attr">
+   <param name="name">attr-name</param>
+   <attr name="attr-name" what="content" of="//Aaa/Bbb"/>
+  </compute>
+  <expect>123abc</expect>
+ </it>
+
+
+ <it title="should get an attribute value with &lt;attr name=&quot;…&quot; what=&quot;value&quot; of=&quot;…&quot;/&gt;">
+  <compute name="book:get_attr">
+   <param name="name">attr-name</param>
+   <attr name="attr-name" what="value" of="//Aaa/Bbb"/>
+  </compute>
+  <expect>123</expect>
+ </it>
+
+
+ <it title="should get an attribute value with &lt;attr name=&quot;…&quot; what=&quot;number&quot; of=&quot;…&quot;/&gt;">
+  <compute name="book:get_attr">
+   <param name="name">attr-name</param>
+   <attr name="attr-name" what="number" of="//Aaa/Bbb"/>
+  </compute>
+  <expect>123</expect>
+ </it>
+
+ <it title="should get an attribute value with &lt;attr name=&quot;…&quot; what=&quot;number&quot; of=&quot;…&quot;/&gt; but value is not a number">
+  <compute name="book:get_attr">
+   <param name="name">attr-name</param>
+   <attr name="attr-name" what="number" of="//Aaa/Bbb/Ccc"/>
+  </compute>
+  <expect>NaN</expect>
+ </it>
+
+
+ <it title="should get an attribute value with &lt;attr name=&quot;…&quot; what=&quot;name&quot; of=&quot;…&quot;/&gt;">
+  <compute name="book:get_attr">
+   <param name="name">attr-name</param>
+   <attr name="attr-name" what="name" of="//Aaa/Bbb/Ccc"/>
+  </compute>
+  <expect>Ccc</expect>
+ </it>
+
+
+ <it title="should get an attribute value with &lt;attr name=&quot;…&quot; what=&quot;preceding-comment&quot; of=&quot;…&quot;/&gt;">
+  <compute name="book:get_attr">
+   <param name="name">attr-name</param>
+   <attr name="attr-name" what="preceding-comment" of="//Aaa/Bbb"/>
+  </compute>
+  <expect>comment1</expect>
+ </it>
+
+
+ <it title="should get an attribute value with &lt;attr name=&quot;…&quot; what=&quot;following-comment&quot; of=&quot;…&quot;/&gt;">
+  <compute name="book:get_attr">
+   <param name="name">attr-name</param>
+   <attr name="attr-name" what="following-comment" of="//Aaa/Bbb"/>
+  </compute>
+  <expect>comment2</expect>
+ </it>
+
+
+ <it title="should get an attribute value with &lt;attr name=&quot;…&quot; what=&quot;count&quot; of=&quot;…&quot;/&gt;">
+  <compute name="book:get_attr">
+   <param name="name">attr-name</param>
+   <attr name="attr-name" what="count" of="//Aaa/Bbb"/>
+  </compute>
+  <expect>2</expect>
+ </it>
+
+
+ <it title="should get an attribute value with &lt;attr name=&quot;…&quot; what=&quot;sum&quot; of=&quot;…&quot;/&gt;">
+  <compute name="book:get_attr">
+   <param name="name">attr-name</param>
+   <attr name="attr-name" what="sum" of="//Aaa/Bbb"/>
+  </compute>
+  <expect>579</expect>
+ </it>
+
+
+ <Aaa>
+  <!--comment1-->
+  <Bbb>123<Ccc>abc</Ccc></Bbb>
+  <!--comment2-->
+  <Bbb>456</Bbb>
+ </Aaa>
 </describe>
