@@ -5,45 +5,59 @@
 
  <describe title="Use @of attribute">
   <it title="should get a value at specified path '.'">
-   <compute><value of=".">A<b>B<c>C</c>b</b>a</value></compute>
+   <compute>
+    <value of=".">A<b>B<c>C</c>b</b>a</value>
+   </compute>
    <expect>A</expect>
   </it>
 
 
   <it title="should get a value at absolute path">
-   <compute><value of="/describe/dataset/aaa" /></compute>
+   <compute>
+    <value of="/describe/dataset/aaa" />
+   </compute>
    <expect>A1</expect>
   </it>
 
 
   <it title="should get a value at relative path">
-   <compute><value of="aaa/bbb">
-    <aaa><bbb>CCC</bbb></aaa>
-   </value></compute>
+   <compute>
+    <value of="aaa/bbb">
+     <aaa><bbb>CCC</bbb></aaa>
+    </value>
+   </compute>
    <expect>CCC</expect>
   </it>
 
 
   <it title="should get a value at a path with an attribute">
-   <compute><value of="/describe/dataset/aaa/bbb[@id='b2']" /></compute>
+   <compute>
+    <value of="/describe/dataset/aaa/bbb[@id='b2']" />
+   </compute>
    <expect>B2</expect>
   </it>
 
 
   <it title="should not get a value of child or descendant element at specified path">
-   <compute><value of="/describe/dataset/aaa" /></compute>
+   <compute>
+    <value of="/describe/dataset/aaa" />
+   </compute>
    <expect>A1</expect>
   </it>
 
 
   <it title="should get a value at a path with an index">
-   <compute><value of="/describe/dataset/aaa/bbb[2]" /></compute>
+   <compute>
+    <value of="/describe/dataset/aaa/bbb[2]" />
+   </compute>
    <expect>B2</expect>
   </it>
 
 
   <it title="should get a value at a path with indexes">
-   <compute><value of="/describe/dataset/aaa[2]/bbb[1]" /></compute>
+   <compute>
+    <value of="/describe/dataset/aaa[2]/bbb[1]" />
+   </compute>
    <expect>B3</expect>
   </it>
  </describe>
@@ -51,25 +65,33 @@
 
  <describe title="Use attr[@name='of'] element">
   <it title="should get a value at absolute path">
-   <compute><value>
-    <attr name="of">/describe/dataset/aaa</attr>
-   </value></compute>
+   <compute>
+    <value>
+     <attr name="of">/describe/dataset/aaa</attr>
+    </value>
+   </compute>
    <expect>A1</expect>
   </it>
 
 
   <it title="should get a value at relative path">
-   <compute><value><attr name="of">aaa/bbb</attr>
-    <aaa><bbb>CCC</bbb></aaa>
-   </value></compute>
+   <compute>
+    <value>
+     <attr name="of">aaa/bbb</attr>
+     <aaa><bbb>CCC</bbb></aaa>
+    </value>
+   </compute>
    <expect>CCC</expect>
   </it>
 
 
   <it title="should get a value at relative path with &lt;attr&gt; element">
-   <compute><value><attr name="of" of="p/q"><p><q>aaa/bbb</q></p></attr>
-    <aaa><bbb>CCC</bbb></aaa>
-   </value></compute>
+   <compute>
+    <value>
+     <attr name="of" of="p/q"><p><q>aaa/bbb</q></p></attr>
+     <aaa><bbb>CCC</bbb></aaa>
+    </value>
+   </compute>
    <expect>CCC</expect>
   </it>
  </describe>
@@ -77,7 +99,11 @@
 
  <describe title="Use @prefix and @suffix attribute">
   <it title="should print prefix and suffix by @prefix and @suffix attributes">
-   <compute><value of="." prefix="[" suffix="]">A<b>B<c>C</c>b</b>a</value></compute>
+   <compute>
+    <value of="." prefix="[" suffix="]">
+     A<b>B<c>C</c>b</b>a
+    </value>
+   </compute>
    <expect>[A]</expect>
   </it>
  </describe>
@@ -85,10 +111,12 @@
 
  <describe title="Use attr[@name='prefix'] and attr[@name='suffix'] element">
   <it title="should print prefix and suffix by &lt;attr&gt;">
-   <compute><value of=".">A
-    <attr name="prefix">{</attr>
-    <attr name="suffix">}</attr>
-   </value></compute>
+   <compute>
+    <value of=".">A
+     <attr name="prefix">{</attr>
+     <attr name="suffix">}</attr>
+    </value>
+   </compute>
    <expect>{A}</expect>
   </it>
  </describe>
@@ -96,7 +124,9 @@
 
  <describe title="Use @data-src attribute">
   <it title="should get a value of a node in the external file">
-   <compute><value of="/List/Item" data-src="data/value.data.xml" /></compute>
+   <compute>
+    <value of="/List/Item" data-src="data/value.data.xml" />
+   </compute>
    <expect>ABC</expect>
   </it>
  </describe>
@@ -104,9 +134,11 @@
 
  <describe title="Use attr[@name='data-src'] element">
   <it title="should get a value of a node in the external file">
-   <compute><value of="/List/Item">
-    <attr name="data-src">data/value.data.xml</attr>
-   </value></compute>
+   <compute>
+    <value of="/List/Item">
+     <attr name="data-src">data/value.data.xml</attr>
+    </value>
+   </compute>
    <expect>ABC</expect>
   </it>
  </describe>

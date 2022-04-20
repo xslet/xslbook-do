@@ -5,45 +5,62 @@
 
  <describe title="Use @of attribute">
   <it title="should get names of nodes at specified path '.'">
-   <compute><names of=".">A<b>B<c>C</c></b>a</names></compute>
+   <compute>
+    <names of=".">
+     A<b>B<c>C</c></b>a
+    </names>
+   </compute>
    <expect>names</expect>
   </it>
 
 
   <it title="should get names of nodes at absolute path">
-   <compute><names of="/describe/dataset/aaa/*"/></compute>
+   <compute>
+    <names of="/describe/dataset/aaa/*"/>
+   </compute>
    <expect>bbb1bbb2bbb3</expect>
   </it>
 
 
   <it title="should get names of nodes at relative path">
-   <compute><names of="aaa/*">
-    <aaa><bbb1>C1</bbb1></aaa><aaa><bbb2>C2</bbb2></aaa>
-   </names></compute>
+   <compute>
+    <names of="aaa/*">
+     <aaa><bbb1>C1</bbb1></aaa>
+     <aaa><bbb2>C2</bbb2></aaa>
+    </names>
+   </compute>
    <expect>bbb1bbb2</expect>
   </it>
 
 
   <it title="should get names of nodes at a path with an attribute">
-   <compute><names of="/describe/dataset/aaa/*[@id='b2']"/></compute>
+   <compute>
+    <names of="/describe/dataset/aaa/*[@id='b2']"/>
+   </compute>
    <expect>bbb2bbb3</expect>
   </it>
 
 
   <it title="should not get names of child or descendant element at specified path">
-   <compute><names of="/describe/dataset/aaa"/></compute>
+   <compute>
+    <names of="/describe/dataset/aaa"/>
+   </compute>
    <expect>aaaaaa</expect>
   </it>
 
 
   <it title="should get names of nodes at a path with an index">
-   <compute><names of="/describe/dataset/aaa/*[2]"/></compute>
+   <compute>
+    <names of="/describe/dataset/aaa/*[2]"/>
+   </compute>
    <expect>bbb2</expect>
   </it>
 
 
   <it title="should get names of nodes at a path with indexes">
-   <compute><names of="/describe/dataset/aaa[2]/*[1]"/></compute>
+   <compute>
+    <names of="/describe/dataset/aaa[2]/*[1]"/>
+   </compute>
    <expect>bbb3</expect>
   </it>
  </describe>
@@ -51,9 +68,11 @@
 
  <describe title="Use attr[@name='of'] element">
   <it title="should get names of nodes at absolute path">
-   <compute><names>
-    <attr name="of">/describe/dataset/aaa/*</attr>
-   </names></compute>
+   <compute>
+    <names>
+     <attr name="of">/describe/dataset/aaa/*</attr>
+    </names>
+   </compute>
    <expect>bbb1bbb2bbb3</expect>
   </it>
 
@@ -70,7 +89,9 @@
 
  <describe title="Use @prefix and @suffix attributes">
   <it title="should print prefix and suffix for each name">
-   <compute><names of="//dataset/aaa/*" prefix="(" suffix=")"/></compute>
+   <compute>
+    <names of="//dataset/aaa/*" prefix="(" suffix=")"/>
+   </compute>
    <expect>(bbb1)(bbb2)(bbb3)</expect>
   </it>
  </describe>
@@ -78,7 +99,12 @@
 
  <describe title="Use attr[@name='prefix'] and attr[@name='suffix'] elements">
   <it title="should print prefix and suffix for each name">
-   <compute><names of="//dataset/aaa/*"><attr name="prefix">(</attr><attr name="suffix">)</attr></names></compute>
+   <compute>
+    <names of="//dataset/aaa/*">
+     <attr name="prefix">(</attr>
+     <attr name="suffix">)</attr>
+    </names>
+   </compute>
    <expect>(bbb1)(bbb2)(bbb3)</expect>
   </it>
  </describe>
@@ -86,7 +112,9 @@
 
  <describe title="Use @separator attribute">
   <it title="should print separator for each name">
-   <compute><names of="//dataset/aaa/*" separator=", "/></compute>
+   <compute>
+    <names of="//dataset/aaa/*" separator=", "/>
+   </compute>
    <expect>bbb1, bbb2, bbb3</expect>
   </it>
  </describe>
@@ -94,7 +122,11 @@
 
  <describe title="Use attr[@name='separator'] element">
   <it title="should print separator for each name">
-   <compute><names of="//dataset/aaa/*"><attr name="separator">, </attr></names></compute>
+   <compute>
+    <names of="//dataset/aaa/*">
+     <attr name="separator">, </attr>
+    </names>
+   </compute>
    <expect>bbb1, bbb2, bbb3</expect>
   </it>
  </describe>
@@ -102,7 +134,9 @@
 
  <describe title="Use @data-src attribute">
   <it title="should get names of nodes in the external file">
-   <compute><names of="/List/*" prefix="(" suffix=")" data-src="data/name.data.xml"/></compute>
+   <compute>
+    <names of="/List/*" prefix="(" suffix=")" data-src="data/name.data.xml"/>
+   </compute>
    <expect>(Item1)(Item2)(Item3)(Item4)</expect>
   </it>
  </describe>
@@ -110,7 +144,11 @@
 
  <describe title="Use attr[@name='data-src'] element">
   <it title="should get names of nodes in the external file">
-   <compute><names of="/List/*" prefix="(" suffix=")"><attr name="data-src">data/name.data.xml</attr></names></compute>
+   <compute>
+    <names of="/List/*" prefix="(" suffix=")">
+     <attr name="data-src">data/name.data.xml</attr>
+    </names>
+   </compute>
    <expect>(Item1)(Item2)(Item3)(Item4)</expect>
   </it>
  </describe>

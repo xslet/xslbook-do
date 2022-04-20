@@ -5,13 +5,17 @@
 
  <describe title="Use @of attribute">
   <it title="should get value of a node at the specified path and it matches the condition">
-   <compute><if of="//Aaa/Bbb/Ccc" eq="Ab">Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb/Ccc" eq="Ab">Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
 
   <it title="should get value of a node at the specified path but it does not match the condition">
-   <compute><if of="//Aaa/Bbb/Ccc" eq="Abcd1">Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb/Ccc" eq="Abcd1">Pass</if>
+   </compute>
    <expect></expect>
   </it>
  </describe>
@@ -19,13 +23,17 @@
 
  <describe title="Use &lt;attr name=&quot;of&quot;&gt; element">
   <it title="should get value of a node at the specified path and it matches the condition">
-   <compute><if eq="Ab"><attr name="of">//Aaa/Bbb/Ccc</attr>Pass</if></compute>
+   <compute>
+    <if eq="Ab"><attr name="of">//Aaa/Bbb/Ccc</attr>Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
 
   <it title="should get value of a node at the specified path but it does not match the condition">
-   <compute><if eq="Abcd1"><attr name="of">//Aaa/Bbb/Ccc</attr>Pass</if></compute>
+   <compute>
+    <if eq="Abcd1"><attr name="of">//Aaa/Bbb/Ccc</attr>Pass</if>
+   </compute>
    <expect></expect>
   </it>
  </describe>
@@ -33,179 +41,243 @@
 
  <describe title="Test conditions">
   <it title="should test equal condtion with @eq attribute">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c" eq="3">Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c" eq="3">Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
   <it title="should test not-equal condition with @eq attribute">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c" eq="2">Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c" eq="2">Pass</if>
+   </compute>
    <expect></expect>
   </it>
 
 
   <it title="should test equal condtion with @ne attribute">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c" ne="3">Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c" ne="3">Pass</if>
+   </compute>
    <expect></expect>
   </it>
 
   <it title="should test not-equal condition with @ne attribute">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c" ne="2">Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c" ne="2">Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
 
   <it title="should test less condtion with @le attribute">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c" le="4">Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c" le="4">Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
   <it title="should test equal condition with @le attribute">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c" le="3">Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c" le="3">Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
   <it title="should test greater condition with @le attribute">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c" le="2">Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c" le="2">Pass</if>
+   </compute>
    <expect></expect>
   </it>
 
 
   <it title="should test less condtion with @lt attribute">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c" lt="4">Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c" lt="4">Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
   <it title="should test equal condition with @lt attribute">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c" lt="3">Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c" lt="3">Pass</if>
+   </compute>
    <expect></expect>
   </it>
 
   <it title="should test greater condition with @lt attribute">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c" lt="2">Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c" lt="2">Pass</if>
+   </compute>
    <expect></expect>
   </it>
 
 
   <it title="should test less condtion with @ge attribute">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c" ge="4">Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c" ge="4">Pass</if>
+   </compute>
    <expect></expect>
   </it>
 
   <it title="should test equal condition with @ge attribute">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c" ge="3">Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c" ge="3">Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
   <it title="should test greater condition with @ge attribute">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c" ge="2">Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c" ge="2">Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
 
   <it title="should test less condtion with @gt attribute">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c" gt="4">Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c" gt="4">Pass</if>
+   </compute>
    <expect></expect>
   </it>
 
   <it title="should test equal condition with @gt attribute">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c" gt="3">Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c" gt="3">Pass</if>
+   </compute>
    <expect></expect>
   </it>
 
   <it title="should test greater condition with @gt attribute">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c" gt="2">Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c" gt="2">Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
 
   <it title="should test equal condtion with &lt;attr name=&quot;eq&quot;&gt; element">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="eq">3</attr>Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="eq">3</attr>Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
   <it title="should test not-equal condition with &lt;attr name=&quot;eq&quot;&gt; element">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="eq">2</attr>Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="eq">2</attr>Pass</if>
+   </compute>
    <expect></expect>
   </it>
 
 
   <it title="should test equal condtion with &lt;attr name=&quot;ne&quot;&gt; element">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="ne">3</attr>Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="ne">3</attr>Pass</if>
+   </compute>
    <expect></expect>
   </it>
 
   <it title="should test not-equal condtion with &lt;attr name=&quot;ne&quot;&gt; element">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="ne">2</attr>Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="ne">2</attr>Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
 
   <it title="should test less condtion with &lt;attr name=&quot;le&quot;&gt; element">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="le">4</attr>Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="le">4</attr>Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
   <it title="should test equal condtion with &lt;attr name=&quot;le&quot;&gt; element">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="le">3</attr>Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="le">3</attr>Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
   <it title="should test greater condtion with &lt;attr name=&quot;le&quot;&gt; element">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="le">2</attr>Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="le">2</attr>Pass</if>
+   </compute>
    <expect></expect>
   </it>
 
 
   <it title="should test less condtion with &lt;attr name=&quot;lt&quot;&gt; element">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="lt">4</attr>Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="lt">4</attr>Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
 
   <it title="should test equal condtion with &lt;attr name=&quot;lt&quot;&gt; element">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="lt">3</attr>Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="lt">3</attr>Pass</if>
+   </compute>
    <expect></expect>
   </it>
 
 
   <it title="should test greater condtion with &lt;attr name=&quot;lt&quot;&gt; element">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="lt">2</attr>Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="lt">2</attr>Pass</if>
+   </compute>
    <expect></expect>
   </it>
 
 
   <it title="should test less condtion with &lt;attr name=&quot;ge&quot;&gt; element">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="ge">4</attr>Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="ge">4</attr>Pass</if>
+   </compute>
    <expect></expect>
   </it>
 
 
   <it title="should test equal condtion with &lt;attr name=&quot;ge&quot;&gt; element">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="ge">3</attr>Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="ge">3</attr>Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
 
   <it title="should test greater condtion with &lt;attr name=&quot;ge&quot;&gt; element">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="ge">2</attr>Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="ge">2</attr>Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
 
   <it title="should test less condtion with &lt;attr name=&quot;gt&quot;&gt; element">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="gt">4</attr>Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="gt">4</attr>Pass</if>
+   </compute>
    <expect></expect>
   </it>
 
 
   <it title="should test equal condtion with &lt;attr name=&quot;gt&quot;&gt; element">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="gt">3</attr>Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="gt">3</attr>Pass</if>
+   </compute>
    <expect></expect>
   </it>
 
 
   <it title="should test greater condtion with &lt;attr name=&quot;gt&quot;&gt; element">
-   <compute><if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="gt">2</attr>Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb[@b='2']/Ccc/@c"><attr name="gt">2</attr>Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
  </describe>
@@ -213,69 +285,91 @@
 
  <describe title="Use @what attribute">
   <it title="should evaluate a value of a node in a condition if @what is not specified">
-   <compute><if of="//Aaa/Bbb/Ccc" eq="Ab">Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb/Ccc" eq="Ab">Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
 
   <it title="should evaluate a content of a node in a condition if @what is 'content'">
-   <compute><if of="//Aaa/Bbb/Ccc" eq="Abcd1" what="content">Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb/Ccc" eq="Abcd1" what="content">Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
 
   <it title="should evaluate a value of a node in a condition if @what is 'value'">
-   <compute><if of="//Aaa/Bbb/Ccc" eq="Ab" what="value">Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb/Ccc" eq="Ab" what="value">Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
 
   <it title="should evaluate a number value of a node in a condition if @what is 'number'">
-   <compute><if of="//Aaa/Bbb/Ccc/@c" eq="1" what="number">Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb/Ccc/@c" eq="1" what="number">Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
   <it title="should evaluate a number value (NaN) of a node in a condition if @what is 'number'">
-   <compute><if of="//Aaa/Bbb/Ccc" eq="NaN" what="number">Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb/Ccc" eq="NaN" what="number">Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
 
   <it title="should evaluate a name of a node in a condition if @what is 'name'">
-   <compute><if of="//Aaa/Bbb/*" eq="Ccc" what="name">Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb/*" eq="Ccc" what="name">Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
 
   <it title="should evaluate a preceding comment of a node in a condition if @what is 'preceding-comment'">
-   <compute><if of="//Aaa/Bbb" eq=" Comment 1 " what="preceding-comment">Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb" eq=" Comment 1 " what="preceding-comment">Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
 
   <it title="should evaluate a following comment of a node in a condition if @what is 'following-comment'">
-   <compute><if of="//Aaa/Bbb" eq="Comment 2" what="following-comment">Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb" eq="Comment 2" what="following-comment">Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
 
   <it title="should evaluate an index of a node in a condition if @what is `index'">
-   <compute><for each="//Aaa/Bbb/Ccc"><if what="index" eq="1"><index/>.<content/>,</if><if what="index" eq="3"><index/>.<content/>,</if></for></compute>
+   <compute>
+    <for each="//Aaa/Bbb/Ccc">
+     <if what="index" eq="1"><index/>.<content/>,</if>
+     <if what="index" eq="3"><index/>.<content/>,</if>
+    </for>
+   </compute>
    <expect>1.Abcd1,3.Abcd3,</expect>
   </it>
 
 
   <it title="should evaluate an index of a node in a condition if @what is `index' and @of is used as an index ID">
-   <compute
-    ><for index="i" each="//Aaa"
-     ><for index="j" each="Bbb"
-      ><for index="k" each="Ccc"
-       ><if eq="1" what="index" of="j"
-       ><if ne="2" what="index" of="k"
-       ><index of="i"/>.<index of="j"/>.<index of="k"/>.<content
-      />|</if></if></for
-     ></for
-   ></for></compute>
+   <compute>
+    <for index="i" each="//Aaa">
+     <for index="j" each="Bbb">
+      <for index="k" each="Ccc">
+       <if eq="1" what="index" of="j">
+        <if ne="2" what="index" of="k"><index of="i"/>.<index of="j"/>.<index of="k"/>.<content/>|</if>
+       </if>
+      </for>
+     </for>
+    </for>
+   </compute>
    <expect>1.1.1.Abcd1|2.1.1.Abcd4|2.1.3.Abcd6|</expect>
    <!-- the result without if
    <expect>1.1.1.Abcd1|1.1.2.Abcd2|1.2.1.Abcd3|2.1.1.Abcd4|2.1.2.Abcd5|2.1.3.Abcd6|</expect>
@@ -284,13 +378,17 @@
 
 
   <it title="should evaluate count of nodes in a condition if @what is `count'">
-   <compute><if what="count" of="//Aaa/Bbb" eq="3">Pass</if></compute>
+   <compute>
+    <if what="count" of="//Aaa/Bbb" eq="3">Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
 
   <it title="should evaluate sum of nodes in a condition if @what is `sum'">
-   <compute><if what="sum" of="//Aaa/Bbb/@b" eq="6">Pass</if></compute>
+   <compute>
+    <if what="sum" of="//Aaa/Bbb/@b" eq="6">Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
  </describe>
@@ -298,58 +396,85 @@
 
  <describe title="Use &lt;attr name=&quot;what&quot;&gt; element">
   <it title="should evaluate a content of a node in a condition if what is 'content'">
-   <compute><if of="//Aaa/Bbb/Ccc" eq="Abcd1"><attr name="what">content</attr>Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb/Ccc" eq="Abcd1"><attr name="what">content</attr>Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
 
   <it title="should evaluate a value of a node in a condition if what is 'value'">
-   <compute><if of="//Aaa/Bbb/Ccc" eq="Ab"><attr name="what">value</attr>Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb/Ccc" eq="Ab"><attr name="what">value</attr>Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
 
   <it title="should evaluate a number value of a node in a condition if what is 'number'">
-   <compute><if of="//Aaa/Bbb/Ccc/@c" eq="1"><attr name="what">number</attr>Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb/Ccc/@c" eq="1"><attr name="what">number</attr>Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
 
   <it title="should evaluate a name of a node in a condition if what is 'name'">
-   <compute><if of="//Aaa/Bbb/*" eq="Ccc"><attr name="what">name</attr>Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb/*" eq="Ccc"><attr name="what">name</attr>Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
 
   <it title="should evaluate a preceding comment of a node in a condition if what is 'preceding-comment'">
-   <compute><if of="//Aaa/Bbb" eq=" Comment 1 "><attr name="what">preceding-comment</attr>Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb" eq=" Comment 1 ">
+     <attr name="what">preceding-comment</attr>Pass</if>
+    </compute>
    <expect>Pass</expect>
   </it>
 
 
   <it title="should evaluate a following comment of a node in a condition if what is 'following-comment'">
-   <compute><if of="//Aaa/Bbb" eq="Comment 2"><attr name="what">following-comment</attr>Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb" eq="Comment 2">
+     <attr name="what">following-comment</attr>Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
 
   <it title="should evaluate an index of a node in a condition if what is `index'">
-   <compute><for each="//Aaa/Bbb/Ccc"><if eq="1"><attr name="what">index</attr><index/>.<content/>,</if><if eq="3"><attr name="what">index</attr><index/>.<content/>,</if></for></compute>
+   <compute>
+    <for each="//Aaa/Bbb/Ccc">
+     <if eq="1"><attr name="what">index</attr>
+      <index/>.<content/>,</if>
+     <if eq="3"><attr name="what">index</attr>
+      <index/>.<content/>,</if>
+    </for>
+   </compute>
    <expect>1.Abcd1,3.Abcd3,</expect>
   </it>
 
 
   <it title="should evaluate an index of a node in a condition if @what is `index' and @of is used as an index ID">
-   <compute
-    ><for index="i" each="//Aaa"
-     ><for index="j" each="Bbb"
-      ><for index="k" each="Ccc"
-       ><if eq="1"><attr name="what">index</attr><attr name="of">j</attr
-       ><if ne="2"><attr name="what">index</attr><attr name="of">k</attr
-       ><index of="i"/>.<index of="j"/>.<index of="k"/>.<content
-      />|</if></if></for
-     ></for
-   ></for></compute>
+   <compute>
+    <for index="i" each="//Aaa">
+     <for index="j" each="Bbb">
+      <for index="k" each="Ccc">
+       <if eq="1">
+        <attr name="what">index</attr>
+        <attr name="of">j</attr>
+        <if ne="2">
+         <attr name="what">index</attr>
+         <attr name="of">k</attr>
+         <index of="i"/>.<index of="j"/>.<index of="k"/>.<content/>|</if>
+       </if>
+      </for>
+     </for>
+    </for>
+   </compute>
    <expect>1.1.1.Abcd1|2.1.1.Abcd4|2.1.3.Abcd6|</expect>
    <!-- the result without if
    <expect>1.1.1.Abcd1|1.1.2.Abcd2|1.2.1.Abcd3|2.1.1.Abcd4|2.1.2.Abcd5|2.1.3.Abcd6|</expect>
@@ -358,13 +483,21 @@
 
 
   <it title="should evaluate count of nodes in a condition if @what is `count'">
-   <compute><if of="//Aaa/Bbb"><attr name="what">count</attr><attr name="eq">3</attr>Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb">
+     <attr name="what">count</attr>
+     <attr name="eq">3</attr>Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
 
 
   <it title="should evaluate sum of nodes in a condition if @what is `sum'">
-   <compute><if of="//Aaa/Bbb/@b"><attr name="what">sum</attr><attr name="eq">6</attr>Pass</if></compute>
+   <compute>
+    <if of="//Aaa/Bbb/@b">
+     <attr name="what">sum</attr>
+     <attr name="eq">6</attr>Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
  </describe>
@@ -372,7 +505,9 @@
 
  <describe title="Use @data-src attribute">
   <it title="should evaluate data in the external file">
-   <compute><if of="/List/Item" eq="ABC" data-src="data/if.data.xml">Pass</if></compute>
+   <compute>
+    <if of="/List/Item" eq="ABC" data-src="data/if.data.xml">Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
  </describe>
@@ -380,7 +515,10 @@
 
  <describe title="Use &lt;attr name=&quot;data-src&quot;&gt; element">
   <it title="should evaluate data in the external file">
-   <compute><if of="/List/Item" eq="ABC"><attr name="data-src">data/if.data.xml</attr>Pass</if></compute>
+   <compute>
+    <if of="/List/Item" eq="ABC">
+     <attr name="data-src">data/if.data.xml</attr>Pass</if>
+   </compute>
    <expect>Pass</expect>
   </it>
  </describe>
@@ -388,12 +526,16 @@
 
  <describe title="Use &lt;then&gt; element">
   <it title="should apply then element if it exists and the condition is passed">
-   <compute><if of="//Aaa/Bbb/Ccc" eq="Ab">Pass<then>OK</then></if></compute>
+   <compute>
+    <if of="//Aaa/Bbb/Ccc" eq="Ab">Pass<then>OK</then></if>
+   </compute>
    <expect>OK</expect>
   </it>
 
   <it title="should not apply then element if exists and the condition is not passed">
-   <compute><if of="//Aaa/Bbb/Ccc" eq="Abcd1">Pass<then>OK</then></if></compute>
+   <compute>
+    <if of="//Aaa/Bbb/Ccc" eq="Abcd1">Pass<then>OK</then></if>
+   </compute>
    <expect></expect>
   </it>
  </describe>
@@ -401,12 +543,16 @@
 
  <describe title="Use &lt;else&gt; element">
   <it title="should apply else element if it exists and the condition is not passed">
-   <compute><if of="//Aaa/Bbb/Ccc" eq="Abcd1">Pass<else>NG</else></if></compute>
+   <compute>
+    <if of="//Aaa/Bbb/Ccc" eq="Abcd1">Pass<else>NG</else></if>
+   </compute>
    <expect>NG</expect>
   </it>
 
   <it title="should not apply else element if exists and the condition is passed">
-   <compute><if of="//Aaa/Bbb/Ccc" eq="Ab">Pass<else>NG</else></if></compute>
+   <compute>
+    <if of="//Aaa/Bbb/Ccc" eq="Ab">Pass<else>NG</else></if>
+   </compute>
    <expect></expect>
   </it>
  </describe>
@@ -414,12 +560,18 @@
 
  <describe title="Use both &lt;then&gt; and &lt;else&gt; element">
   <it title="should apply then element if exists and the condition is passed">
-   <compute><if of="//Aaa/Bbb/Ccc" eq="Ab">Pass<then>OK</then><else>NG</else></if></compute>
+   <compute>
+    <if of="//Aaa/Bbb/Ccc" eq="Ab">Pass<then>OK</then>
+     <else>NG</else></if>
+   </compute>
    <expect>OK</expect>
   </it>
 
   <it title="should apply else element if exists and the condition is not passed">
-   <compute><if of="//Aaa/Bbb/Ccc" eq="Abcd1">Pass<then>OK</then><else>NG</else></if></compute>
+   <compute>
+    <if of="//Aaa/Bbb/Ccc" eq="Abcd1">Pass<then>OK</then>
+     <else>NG</else></if>
+   </compute>
    <expect>NG</expect>
   </it>
  </describe>
@@ -427,31 +579,58 @@
 
  <describe title="Apply child and descendant elements">
   <it title="should apply child value element">
-   <compute><if of="//Aaa/Bbb/@b" eq="1"><value of="//Aaa/Bbb/@b"/></if></compute>
+   <compute>
+    <if of="//Aaa/Bbb/@b" eq="1">
+     <value of="//Aaa/Bbb/@b"/>
+    </if>
+   </compute>
    <expect>1</expect>
   </it>
 
 
   <it title="should apply child if element">
-   <compute><if of="//Aaa/Bbb/@b" eq="1"><if of="//Aaa/Bbb/Ccc/@c" eq="1"><content of="//Aaa/Bbb/Ccc"/></if></if></compute>
+   <compute>
+    <if of="//Aaa/Bbb/@b" eq="1">
+     <if of="//Aaa/Bbb/Ccc/@c" eq="1">
+      <content of="//Aaa/Bbb/Ccc"/>
+     </if>
+    </if>
+   </compute>
    <expect>Abcd1</expect>
   </it>
 
 
   <it title="should apply child for element">
-   <compute><if of="//Aaa/Bbb/@b" eq="1"><for each="//Aaa/Bbb"><content of="Ccc"/></for></if></compute>
+   <compute>
+    <if of="//Aaa/Bbb/@b" eq="1">
+     <for each="//Aaa/Bbb">
+      <content of="Ccc"/>
+     </for>
+    </if>
+   </compute>
    <expect>Abcd1Abcd3Abcd4</expect>
   </it>
 
 
   <it title="should apply if element of which parent is for">
-   <compute><for each="//Aaa"><if of="Bbb/@b" eq="1"><content of="Bbb/Ccc"/></if></for></compute>
+   <compute>
+    <for each="//Aaa">
+     <if of="Bbb/@b" eq="1">
+      <content of="Bbb/Ccc"/>
+     </if>
+    </for>
+   </compute>
    <expect>Abcd1</expect>
   </it>
 
 
   <it title="should not inherit data-src to child element">
-   <compute><if of="//Aaa/Bbb/@b" eq="1"><value of="ddd"/><ddd>ABC</ddd></if></compute>
+   <compute>
+    <if of="//Aaa/Bbb/@b" eq="1">
+     <value of="ddd"/>
+     <ddd>ABC</ddd>
+    </if>
+   </compute>
    <expect>ABC</expect>
   </it>
  </describe>

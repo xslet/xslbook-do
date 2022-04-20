@@ -5,45 +5,61 @@
 
  <describe title="Use @of attribute">
   <it title="should get count of nodes at specified path '.'">
-   <compute><count of="."/></compute>
+   <compute>
+    <count of="."/>
+   </compute>
    <expect>1</expect>
   </it>
 
 
   <it title="should get count nodes at absolute path">
-   <compute><count of="/describe/dataset/aaa" /></compute>
+   <compute>
+    <count of="/describe/dataset/aaa" />
+   </compute>
    <expect>2</expect>
   </it>
 
 
   <it title="should get count of nodes at relative path">
-   <compute><count of="aaa/bbb">
-    <aaa><bbb>CCC</bbb></aaa>
-   </count></compute>
+   <compute>
+    <count of="aaa/bbb">
+     <aaa>
+      <bbb>CCC</bbb>
+     </aaa>
+    </count>
+   </compute>
    <expect>1</expect>
   </it>
 
 
   <it title="should get count of nodes at a path with an attribute">
-   <compute><count of="/describe/dataset/aaa/bbb[@id='b2']" /></compute>
+   <compute>
+    <count of="/describe/dataset/aaa/bbb[@id='b2']" />
+   </compute>
    <expect>1</expect>
   </it>
 
 
   <it title="should not get count of child or descendant elements at specified path">
-   <compute><count of="/describe/dataset/aaa" /></compute>
+   <compute>
+    <count of="/describe/dataset/aaa" />
+   </compute>
    <expect>2</expect>
   </it>
 
 
   <it title="should get count of nodes at a path with an index">
-   <compute><count of="/describe/dataset/aaa/bbb[2]" /></compute>
+   <compute>
+    <count of="/describe/dataset/aaa/bbb[2]" />
+   </compute>
    <expect>1</expect>
   </it>
 
 
   <it title="should get count of nodes at a path with indexes">
-   <compute><count of="/describe/dataset/aaa[2]/bbb[1]" /></compute>
+   <compute>
+    <count of="/describe/dataset/aaa[2]/bbb[1]" />
+    </compute>
    <expect>1</expect>
   </it>
  </describe>
@@ -51,17 +67,24 @@
 
  <describe title="Use attr[@name='of'] element">
   <it title="should get count of nodes at absolute path">
-   <compute><count>
-    <attr name="of">/describe/dataset/aaa</attr>
-   </count></compute>
+   <compute>
+    <count>
+     <attr name="of">/describe/dataset/aaa</attr>
+    </count>
+   </compute>
    <expect>2</expect>
   </it>
 
 
   <it title="should get count of nodes at relative path">
-   <compute><count><attr name="of">aaa/bbb</attr>
-    <aaa><bbb>CCC</bbb></aaa>
-   </count></compute>
+   <compute>
+    <count>
+     <attr name="of">aaa/bbb</attr>
+     <aaa>
+      <bbb>CCC</bbb>
+     </aaa>
+    </count>
+   </compute>
    <expect>1</expect>
   </it>
  </describe>
@@ -69,7 +92,17 @@
 
  <describe title="Use @prefix and @suffix attribute">
   <it title="should print prefix and suffix by @prefix and @suffix attributes">
-   <compute><count of="." prefix="[" suffix="]">A<b>B<c>C</c>b</b>a</count></compute>
+   <compute>
+    <count of="." prefix="[" suffix="]">
+     A
+     <b>
+      B
+      <c>C</c>
+      b
+     </b>
+     a
+    </count>
+   </compute>
    <expect>[1]</expect>
   </it>
  </describe>
@@ -77,10 +110,13 @@
 
  <describe title="Use attr[@name='prefix'] and attr[@name='suffix'] element">
   <it title="should print prefix and suffix by &lt;attr&gt;">
-   <compute><count of=".">A
-    <attr name="prefix">{</attr>
-    <attr name="suffix">}</attr>
-   </count></compute>
+   <compute>
+    <count of=".">
+     A
+     <attr name="prefix">{</attr>
+     <attr name="suffix">}</attr>
+    </count>
+   </compute>
    <expect>{1}</expect>
   </it>
  </describe>
@@ -88,7 +124,9 @@
 
  <describe title="Use @data-src attribute">
   <it title="should get count of nodes in the external file">
-   <compute><count of="/List/Item" data-src="data/count.data.xml" /></compute>
+   <compute>
+    <count of="/List/Item" data-src="data/count.data.xml" />
+   </compute>
    <expect>4</expect>
   </it>
  </describe>
@@ -96,9 +134,11 @@
 
  <describe title="Use attr[@name='data-src'] element">
   <it title="should get count of nodes in the external file">
-   <compute><count of="/List/Item">
-    <attr name="data-src">data/count.data.xml</attr>
-   </count></compute>
+   <compute>
+    <count of="/List/Item">
+     <attr name="data-src">data/count.data.xml</attr>
+    </count>
+   </compute>
    <expect>4</expect>
   </it>
  </describe>
