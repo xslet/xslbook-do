@@ -8,7 +8,7 @@
 
 ** Copyright (C) 2022 xslet project
 ** MIT License
---><xsl:stylesheet xmlns:book="https://github.com/xslet/2020/xslbook" xmlns:do="https://github.com/xslet/2020/xsldo" xmlns:ut="https://github.com/xslet/2020/xslutil" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"><!--** A set of utilities for XSLT programs on Web browsers. --><xsl:import href="xslutil.xsl"/><!--** XML data operation libraries for XSLT programs on Web browsers.  --><xsl:import href="xsldo.xsl"/><!--**
+--><xsl:stylesheet xmlns:book="https://github.com/xslet/2020/xslbook" xmlns:do="https://github.com/xslet/2020/xsldo" xmlns:ut="https://github.com/xslet/2020/xslutil" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"><!--** A set of utilities for XSLT programs on Web browsers. --><xsl:import href="xslutil.xsl"/><!--** XML data operation libraries for XSLT programs on Web browsers.  --><xsl:import href="xsldo.xsl"/><xsl:strip-space elements="*"/><!--**
   Gets count of nodes at the specified path.
   The path is specified with @of attribute.
   The prefix and suffix for a value can be specified with @prefix and @suffix attributes.

@@ -5,53 +5,73 @@
 
  <describe title="Use @of attribute">
   <it title="should get number values at specified path '.'">
-   <compute><numbers of=".">11<b>22<c>33</c>44</b>55</numbers></compute>
+   <compute>
+    <numbers of=".">
+     11<b>22<c>33</c>44</b>55
+    </numbers>
+   </compute>
    <expect>11</expect>
   </it>
 
 
   <it title="should get number values at absolute path">
-   <compute><numbers of="/describe/dataset/aaa/bbb"/></compute>
+   <compute>
+    <numbers of="/describe/dataset/aaa/bbb"/>
+   </compute>
    <expect>887766</expect>
   </it>
 
 
   <it title="should get number values at relative path">
-   <compute><numbers of="aaa/bbb">
-    <aaa><bbb>1</bbb></aaa><aaa><bbb>2</bbb></aaa>
-   </numbers></compute>
+   <compute>
+    <numbers of="aaa/bbb">
+     <aaa><bbb>1</bbb></aaa>
+     <aaa><bbb>2</bbb></aaa>
+    </numbers>
+   </compute>
    <expect>12</expect>
   </it>
 
 
   <it title="should output NaN for non-number value">
-   <compute><numbers of="aaa/bbb">
-    <aaa><bbb>1</bbb></aaa><aaa><bbb>B</bbb></aaa>
-   </numbers></compute>
+   <compute>
+    <numbers of="aaa/bbb">
+     <aaa><bbb>1</bbb></aaa>
+     <aaa><bbb>B</bbb></aaa>
+    </numbers>
+   </compute>
    <expect>1NaN</expect>
   </it>
 
 
   <it title="should get number values at a path with an attribute">
-   <compute><numbers of="/describe/dataset/aaa/bbb[@id='7']"/></compute>
+   <compute>
+    <numbers of="/describe/dataset/aaa/bbb[@id='7']"/>
+   </compute>
    <expect>77</expect>
   </it>
 
 
   <it title="should not get number values of child or descendant element at specified path">
-   <compute><numbers of="/describe/dataset/aaa"/></compute>
+   <compute>
+    <numbers of="/describe/dataset/aaa"/>
+   </compute>
    <expect>99NaN</expect>
   </it>
 
 
   <it title="should get number values at a path with an index">
-   <compute><numbers of="/describe/dataset/aaa/bbb[2]"/></compute>
+   <compute>
+    <numbers of="/describe/dataset/aaa/bbb[2]"/>
+   </compute>
    <expect>77</expect>
   </it>
 
 
   <it title="should get number values at a path with indexes">
-   <compute><numbers of="/describe/dataset/aaa[2]/bbb[1]"/></compute>
+   <compute>
+    <numbers of="/describe/dataset/aaa[2]/bbb[1]"/>
+   </compute>
    <expect>66</expect>
   </it>
  </describe>
@@ -59,18 +79,23 @@
 
  <describe title="Use attr[@name='of'] element">
   <it title="should get number values at absolute path">
-   <compute><numbers>
-    <attr name="of">/describe/dataset/aaa/bbb</attr>
-   </numbers></compute>
+   <compute>
+    <numbers>
+     <attr name="of">/describe/dataset/aaa/bbb</attr>
+    </numbers>
+   </compute>
    <expect>887766</expect>
   </it>
 
 
   <it title="should get number values at relative path">
-   <compute><numbers><attr name="of">aaa/bbb</attr>
-    <aaa><bbb>98</bbb></aaa>
-    <aaa><bbb>76</bbb></aaa>
-   </numbers></compute>
+   <compute>
+    <numbers>
+     <attr name="of">aaa/bbb</attr>
+     <aaa><bbb>98</bbb></aaa>
+     <aaa><bbb>76</bbb></aaa>
+    </numbers>
+   </compute>
    <expect>9876</expect>
   </it>
  </describe>
@@ -78,7 +103,9 @@
 
  <describe title="Use @prefix and @suffix attributes">
   <it title="should print prefix and suffix for each number value">
-   <compute><numbers of="//dataset/aaa/bbb" prefix="(" suffix=")"/></compute>
+   <compute>
+    <numbers of="//dataset/aaa/bbb" prefix="(" suffix=")"/>
+   </compute>
    <expect>(88)(77)(66)</expect>
   </it>
  </describe>
@@ -86,7 +113,12 @@
 
  <describe title="Use attr[@name='prefix'] and attr[@name='suffix'] elements">
   <it title="should print prefix and suffix for each number value">
-   <compute><numbers of="//dataset/aaa/bbb"><attr name="prefix">(</attr><attr name="suffix">)</attr></numbers></compute>
+   <compute>
+    <numbers of="//dataset/aaa/bbb">
+     <attr name="prefix">(</attr>
+     <attr name="suffix">)</attr>
+    </numbers>
+   </compute>
    <expect>(88)(77)(66)</expect>
   </it>
  </describe>
@@ -94,7 +126,9 @@
 
  <describe title="Use @separator attribute">
   <it title="should print separator for each number value">
-   <compute><numbers of="//dataset/aaa/bbb" separator=", "/></compute>
+   <compute>
+    <numbers of="//dataset/aaa/bbb" separator=", "/>
+   </compute>
    <expect>88, 77, 66</expect>
   </it>
  </describe>
@@ -102,7 +136,11 @@
 
  <describe title="Use attr[@name='separator'] element">
   <it title="should print separator for each number value">
-   <compute><numbers of="//dataset/aaa/bbb"><attr name="separator">, </attr></numbers></compute>
+   <compute>
+    <numbers of="//dataset/aaa/bbb">
+     <attr name="separator">, </attr>
+    </numbers>
+   </compute>
    <expect>88, 77, 66</expect>
   </it>
  </describe>
@@ -110,7 +148,9 @@
 
  <describe title="Use @data-src attribute">
   <it title="should get number values in the external file">
-   <compute><numbers of="/List/Item" prefix="(" suffix=")" data-src="data/number.data.xml"/></compute>
+   <compute>
+    <numbers of="/List/Item" prefix="(" suffix=")" data-src="data/number.data.xml"/>
+   </compute>
    <expect>(222)(444)(111)(333)</expect>
   </it>
  </describe>
@@ -118,7 +158,11 @@
 
  <describe title="Use attr[@name='data-src'] element">
   <it title="should get number values in the external file">
-   <compute><numbers of="/List/Item" prefix="(" suffix=")"><attr name="data-src">data/number.data.xml</attr></numbers></compute>
+   <compute>
+    <numbers of="/List/Item" prefix="(" suffix=")">
+     <attr name="data-src">data/number.data.xml</attr>
+    </numbers>
+   </compute>
    <expect>(222)(444)(111)(333)</expect>
   </it>
  </describe>

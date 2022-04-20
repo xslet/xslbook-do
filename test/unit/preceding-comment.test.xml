@@ -5,49 +5,76 @@
 
  <describe title="Use @of attribute">
   <it title="should get a preceding comment of a node at specified path '.'">
-   <compute><!--comment0--><!--comment1--><preceding-comment of=".">
-    <!--comment2-->A
-    <!--comment3--><b>B
-    <!--comment4--><c>C</c>b</b>a
-   </preceding-comment><!--comment4--></compute>
+   <compute>
+    <!--comment0-->
+    <!--comment1-->
+    <preceding-comment of=".">
+     <!--comment2-->
+     A
+     <!--comment3-->
+     <b>
+      B
+      <!--comment4-->
+      <c>C</c>
+      b
+     </b>
+     a
+    </preceding-comment>
+    <!--comment4-->
+   </compute>
    <expect>comment1</expect>
   </it>
 
 
   <it title="should get a preceding comment of a node at absolute path">
-   <compute><preceding-comment of="/describe/dataset/aaa" /></compute>
+   <compute>
+    <preceding-comment of="/describe/dataset/aaa" />
+   </compute>
    <expect> comment A1 </expect>
   </it>
 
 
   <it title="should get a preceding comment of a node at relative path">
-   <compute><preceding-comment of="aaa/bbb">
-    <aaa><!-- comment bbb --><bbb>CCC</bbb></aaa>
-   </preceding-comment></compute>
+   <compute>
+    <preceding-comment of="aaa/bbb">
+     <aaa>
+      <!-- comment bbb -->
+      <bbb>CCC</bbb>
+     </aaa>
+    </preceding-comment>
+   </compute>
    <expect> comment bbb </expect>
   </it>
 
 
   <it title="should get a preceding comment of a node at a path with an attribute">
-   <compute><preceding-comment of="/describe/dataset/aaa/bbb[@id='b2']" /></compute>
+   <compute>
+    <preceding-comment of="/describe/dataset/aaa/bbb[@id='b2']" />
+   </compute>
    <expect> comment B2 </expect>
   </it>
 
 
   <it title="should not get a preceding comment of a node of child or descendant element at specified path">
-   <compute><preceding-comment of="/describe/dataset/aaa" /></compute>
+   <compute>
+    <preceding-comment of="/describe/dataset/aaa" />
+   </compute>
    <expect> comment A1 </expect>
   </it>
 
 
   <it title="should get a preceding comment of a node at a path with an index">
-   <compute><preceding-comment of="/describe/dataset/aaa/bbb[2]" /></compute>
+   <compute>
+    <preceding-comment of="/describe/dataset/aaa/bbb[2]" />
+   </compute>
    <expect> comment B2 </expect>
   </it>
 
 
   <it title="should get a preceding comment of a node at a path with indexes">
-   <compute><preceding-comment of="/describe/dataset/aaa[2]/bbb[1]" /></compute>
+   <compute>
+    <preceding-comment of="/describe/dataset/aaa[2]/bbb[1]" />
+   </compute>
    <expect> comment B3 </expect>
   </it>
  </describe>
@@ -55,17 +82,29 @@
 
  <describe title="Use attr[@name='of'] element">
   <it title="should get a preceding comment of a node at absolute path">
-   <compute><preceding-comment>
-    <attr name="of">/describe/dataset/aaa</attr>
-   </preceding-comment></compute>
+   <compute>
+    <preceding-comment>
+     <attr name="of">/describe/dataset/aaa</attr>
+    </preceding-comment>
+   </compute>
    <expect> comment A1 </expect>
   </it>
 
 
   <it title="should get a preceding comment of a node at relative path">
-   <compute><preceding-comment><attr name="of">aaa/bbb</attr>
-    <!-- comment aaa --><aaa><!-- comment bbb --><bbb><!-- comment ccc -->CCC</bbb></aaa>
-   </preceding-comment></compute>
+   <compute>
+    <preceding-comment>
+     <attr name="of">aaa/bbb</attr>
+     <!-- comment aaa -->
+     <aaa>
+      <!-- comment bbb -->
+      <bbb>
+       <!-- comment ccc -->
+       CCC
+      </bbb>
+     </aaa>
+    </preceding-comment>
+   </compute>
    <expect> comment bbb </expect>
   </it>
  </describe>
@@ -73,7 +112,18 @@
 
  <describe title="Use @prefix and @suffix attribute">
   <it title="should print prefix and suffix by @prefix and @suffix attributes">
-   <compute><!--comment--><preceding-comment of="." prefix="[" suffix="]">A<b>B<c>C</c>b</b>a</preceding-comment></compute>
+   <compute>
+    <!--comment-->
+    <preceding-comment of="." prefix="[" suffix="]">
+     A
+     <b>
+      B
+      <c>C</c>
+      b
+     </b>
+     a
+    </preceding-comment>
+   </compute>
    <expect>[comment]</expect>
   </it>
  </describe>
@@ -81,10 +131,14 @@
 
  <describe title="Use attr[@name='prefix'] and attr[@name='suffix'] element">
   <it title="should print prefix and suffix by &lt;attr&gt;">
-   <compute><!--comment--><preceding-comment of=".">A
-    <attr name="prefix">{</attr>
-    <attr name="suffix">}</attr>
-   </preceding-comment></compute>
+   <compute>
+    <!--comment-->
+    <preceding-comment of=".">
+     A
+     <attr name="prefix">{</attr>
+     <attr name="suffix">}</attr>
+    </preceding-comment>
+   </compute>
    <expect>{comment}</expect>
   </it>
  </describe>
@@ -92,7 +146,9 @@
 
  <describe title="Use @data-src attribute">
   <it title="should get a preceding comment of a node in the external file">
-   <compute><preceding-comment of="/List/Item" data-src="data/comment.data.xml" /></compute>
+   <compute>
+    <preceding-comment of="/List/Item" data-src="data/comment.data.xml" />
+   </compute>
    <expect> Comment ABC </expect>
   </it>
  </describe>
@@ -100,9 +156,11 @@
 
  <describe title="Use attr[@name='data-src'] element">
   <it title="should get a preceding comment of a node in the external file">
-   <compute><preceding-comment of="/List/Item">
-    <attr name="data-src">data/comment.data.xml</attr>
-   </preceding-comment></compute>
+   <compute>
+    <preceding-comment of="/List/Item">
+     <attr name="data-src">data/comment.data.xml</attr>
+    </preceding-comment>
+   </compute>
    <expect> Comment ABC </expect>
   </it>
  </describe>

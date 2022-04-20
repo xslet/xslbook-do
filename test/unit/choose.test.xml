@@ -7,21 +7,25 @@
 
   <describe title="Use @of attribute">
    <it title="should choose &lt;when&gt; element which satisfies its condition">
-    <compute><choose of="//Aaa/Bbb/@n"
-      ><when eq="0">When-1</when
-      ><when eq="1">When-2</when
-      ><otherwise>Otherwise</otherwise
-    ></choose></compute>
+    <compute>
+     <choose of="//Aaa/Bbb/@n">
+      <when eq="0">When-1</when>
+      <when eq="1">When-2</when>
+      <otherwise>Otherwise</otherwise>
+     </choose>
+    </compute>
     <expect>When-2</expect>
    </it>
 
 
    <it title="should choose &lt;otherwise&gt; element if no &lt;when&gt; element satisfies its condition">
-    <compute><choose of="//Aaa/Bbb/@n"
-      ><when eq="0">When-1</when
-      ><when eq="2">When-2</when
-      ><otherwise>Otherwise</otherwise
-    ></choose></compute>
+    <compute>
+     <choose of="//Aaa/Bbb/@n">
+      <when eq="0">When-1</when>
+      <when eq="2">When-2</when>
+      <otherwise>Otherwise</otherwise>
+     </choose>
+    </compute>
     <expect>Otherwise</expect>
    </it>
   </describe>
@@ -29,11 +33,14 @@
 
   <describe title="Use a child &lt;attr name=&quot;of&quot;&gt; element">
    <it title="should choose &lt;when&gt; element which satisfies its condition">
-    <compute><choose><attr name="of">//Aaa/Bbb/@n</attr
-      ><when eq="0">When-1</when
-      ><when eq="1">When-2</when
-      ><otherwise>Otherwise</otherwise
-    ></choose></compute>
+    <compute>
+     <choose>
+      <attr name="of">//Aaa/Bbb/@n</attr>
+      <when eq="0">When-1</when>
+      <when eq="1">When-2</when>
+      <otherwise>Otherwise</otherwise>
+     </choose>
+    </compute>
     <expect>When-2</expect>
    </it>
   </describe>
@@ -41,110 +48,132 @@
 
   <describe title="Use @what attribute">
    <it title="should evaluate a child text if @what is 'value'">
-    <compute><choose what="value" of="//Aaa/Ccc"
-      ><when eq="D">When-1</when
-      ><when eq="E">When-2</when
-      ><otherwise>Otherwise</otherwise
-    ></choose></compute>
+    <compute>
+     <choose what="value" of="//Aaa/Ccc">
+      <when eq="D">When-1</when>
+      <when eq="E">When-2</when>
+      <otherwise>Otherwise</otherwise>
+     </choose>
+    </compute>
     <expect>When-1</expect>
    </it>
 
 
    <it title="should evaluate child and descendant texts if @what is 'content'">
-    <compute><choose what="content" of="//Aaa/Ccc"
-      ><when eq="ABC">When-1</when
-      ><when eq="DEF">When-2</when
-      ><otherwise>Otherwise</otherwise
-    ></choose></compute>
+    <compute>
+     <choose what="content" of="//Aaa/Ccc">
+      <when eq="ABC">When-1</when>
+      <when eq="DEF">When-2</when>
+      <otherwise>Otherwise</otherwise>
+     </choose>
+    </compute>
     <expect>When-2</expect>
    </it>
 
 
    <it title="should evaluate a child number value if @what is 'number'">
-    <compute><choose what="number" of="//Aaa/Ccc/@n"
-      ><when eq="1">When-1</when
-      ><when eq="2">When-2</when
-      ><otherwise>Otherwise</otherwise
-    ></choose></compute>
+    <compute>
+     <choose what="number" of="//Aaa/Ccc/@n">
+      <when eq="1">When-1</when>
+      <when eq="2">When-2</when>
+      <otherwise>Otherwise</otherwise>
+     </choose>
+    </compute>
     <expect>When-2</expect>
    </it>
 
 
    <it title="should evaluate a child number value if @what is 'number' but not a number">
-    <compute><choose what="number" of="//Aaa/Ccc"
-      ><when eq="ABC">When-1</when
-      ><when eq="NaN">When-2</when
-      ><otherwise>Otherwise</otherwise
-    ></choose></compute>
+    <compute>
+     <choose what="number" of="//Aaa/Ccc">
+      <when eq="ABC">When-1</when>
+      <when eq="NaN">When-2</when>
+      <otherwise>Otherwise</otherwise>
+     </choose>
+    </compute>
     <expect>When-2</expect>
    </it>
 
 
    <it title="should evaluate a child node name if @what is 'name'">
-    <compute><choose what="name" of="//Aaa/Ccc"
-      ><when eq="Bbb">When-1</when
-      ><when eq="Ccc">When-2</when
-      ><otherwise>Otherwise</otherwise
-    ></choose></compute>
+    <compute>
+     <choose what="name" of="//Aaa/Ccc">
+      <when eq="Bbb">When-1</when>
+      <when eq="Ccc">When-2</when>
+      <otherwise>Otherwise</otherwise>
+     </choose>
+    </compute>
     <expect>When-2</expect>
    </it>
 
 
    <it title="should evaluate a child preceding comment if @what is 'preceding-comment'">
-    <compute><choose what="preceding-comment" of="//Aaa/Ccc"
-      ><when eq=" Comment 1 ">When-1</when
-      ><when eq=" Comment 2 ">When-2</when
-      ><when eq=" Comment 3 ">When-3</when
-      ><when eq=" Comment 4 ">When-4</when
-      ><when eq=" Comment 5 ">When-5</when
-      ><otherwise>Otherwise</otherwise
-    ></choose></compute>
+    <compute>
+     <choose what="preceding-comment" of="//Aaa/Ccc">
+      <when eq=" Comment 1 ">When-1</when>
+      <when eq=" Comment 2 ">When-2</when>
+      <when eq=" Comment 3 ">When-3</when>
+      <when eq=" Comment 4 ">When-4</when>
+      <when eq=" Comment 5 ">When-5</when>
+      <otherwise>Otherwise</otherwise>
+     </choose>
+    </compute>
     <expect>When-3</expect>
    </it>
 
 
    <it title="should evaluate a child following comment if @what is 'following-comment'">
-    <compute><choose what="following-comment" of="//Aaa/Ccc"
-      ><when eq=" Comment 1 ">When-1</when
-      ><when eq=" Comment 2 ">When-2</when
-      ><when eq=" Comment 3 ">When-3</when
-      ><when eq=" Comment 4 ">When-4</when
-      ><when eq=" Comment 5 ">When-5</when
-      ><otherwise>Otherwise</otherwise
-    ></choose></compute>
+    <compute>
+     <choose what="following-comment" of="//Aaa/Ccc">
+      <when eq=" Comment 1 ">When-1</when>
+      <when eq=" Comment 2 ">When-2</when>
+      <when eq=" Comment 3 ">When-3</when>
+      <when eq=" Comment 4 ">When-4</when>
+      <when eq=" Comment 5 ">When-5</when>
+      <otherwise>Otherwise</otherwise>
+     </choose>
+    </compute>
     <expect>When-4</expect>
    </it>
 
 
    <it title="should evaluate child node count if @what is 'count'">
-    <compute><choose what="count" of="//Aaa/*"
-      ><when eq="1">When-1</when
-      ><when eq="2">When-2</when
-      ><when eq="3">When-3</when
-      ><otherwise>Otherwise</otherwise
-    ></choose></compute>
+    <compute>
+     <choose what="count" of="//Aaa/*">
+      <when eq="1">When-1</when>
+      <when eq="2">When-2</when>
+      <when eq="3">When-3</when>
+      <otherwise>Otherwise</otherwise>
+     </choose>
+    </compute>
     <expect>When-2</expect>
    </it>
 
 
    <it title="should evaluate sum of child number value if @what is 'sum'">
-    <compute><choose what="sum" of="//Aaa/*/@n"
-      ><when eq="1">When-1</when
-      ><when eq="2">When-2</when
-      ><when eq="3">When-3</when
-      ><otherwise>Otherwise</otherwise
-    ></choose></compute>
+    <compute>
+     <choose what="sum" of="//Aaa/*/@n">
+      <when eq="1">When-1</when>
+      <when eq="2">When-2</when>
+      <when eq="3">When-3</when>
+      <otherwise>Otherwise</otherwise>
+     </choose>
+    </compute>
     <expect>When-3</expect>
    </it>
 
 
    <it title="should evaluate an index of parent loop if @what is 'index'">
-    <compute><for each="//Aaa/*"><choose what="index"
-      ><when eq="1">When-1</when
-      ><when eq="2">When-2</when
-      ><when eq="3">When-2</when
-      ><otherwise>Otherwise</otherwise
-    ></choose></for></compute>
+    <compute>
+     <for each="//Aaa/*">
+      <choose what="index">
+       <when eq="1">When-1</when>
+       <when eq="2">When-2</when>
+       <when eq="3">When-2</when>
+       <otherwise>Otherwise</otherwise>
+      </choose>
+     </for>
+    </compute>
     <expect>When-1When-2</expect>
    </it>
   </describe>
@@ -152,12 +181,14 @@
 
   <describe title="Use a child &lt;attr name=&quot;what&quot;&gt; element">
    <it title="should evaluate child text if @what is 'name'">
-    <compute><choose of="//Aaa/Ccc"
-      ><attr name="what">name</attr
-      ><when eq="Bbb">When-1</when
-      ><when eq="Ccc">When-2</when
-      ><otherwise>Otherwise</otherwise
-    ></choose></compute>
+    <compute>
+     <choose of="//Aaa/Ccc">
+      <attr name="what">name</attr>
+      <when eq="Bbb">When-1</when>
+      <when eq="Ccc">When-2</when>
+      <otherwise>Otherwise</otherwise>
+     </choose>
+    </compute>
     <expect>When-2</expect>
    </it>
   </describe>
@@ -165,11 +196,13 @@
 
   <describe title="Use @data-src attribute">
    <it title="should choose &lt;when&gt; element which satisfies its condition">
-    <compute><choose of="/List/Item[2]" data-src="data/choose.data.xml"
-     ><when eq="ABC">When-1</when
-     ><when eq="DEF">When-2</when
-     ><otherwise>Otherwise</otherwise
-    ></choose></compute>
+    <compute>
+     <choose of="/List/Item[2]" data-src="data/choose.data.xml">
+      <when eq="ABC">When-1</when>
+      <when eq="DEF">When-2</when>
+      <otherwise>Otherwise</otherwise>
+     </choose>
+    </compute>
     <expect>When-2</expect>
    </it>
   </describe>
@@ -177,12 +210,14 @@
 
   <describe title="Use a child &lt;attr name=&quot;data-src&quot;&gt; element">
    <it title="should choose &lt;when&gt; element which satisfies its condition">
-    <compute><choose of="/List/Item[2]"
-     ><attr name="data-src">data/choose.data.xml</attr
-     ><when eq="ABC">When-1</when
-     ><when eq="DEF">When-2</when
-     ><otherwise>Otherwise</otherwise
-    ></choose></compute>
+    <compute>
+     <choose of="/List/Item[2]">
+      <attr name="data-src">data/choose.data.xml</attr>
+      <when eq="ABC">When-1</when>
+      <when eq="DEF">When-2</when>
+      <otherwise>Otherwise</otherwise>
+     </choose>
+    </compute>
     <expect>When-2</expect>
    </it>
   </describe>
@@ -194,13 +229,15 @@
 
   <describe title="Use @of attribute">
    <it title="should choose &lt;when&gt; element which satisfies its condition">
-    <compute><choose of="//Aaa/Bbb/@n"
-      ><when eq="0">When-0</when
-      ><when of="//Aaa/Ccc/Ddd" eq="E">When-E</when
-      ><when eq="1">When-1</when
-      ><when eq="2">When-2</when
-      ><otherwise>Otherwise</otherwise
-    ></choose></compute>
+    <compute>
+     <choose of="//Aaa/Bbb/@n">
+      <when eq="0">When-0</when>
+      <when of="//Aaa/Ccc/Ddd" eq="E">When-E</when>
+      <when eq="1">When-1</when>
+      <when eq="2">When-2</when>
+      <otherwise>Otherwise</otherwise>
+     </choose>
+    </compute>
     <expect>When-E</expect>
    </it>
   </describe>
@@ -208,13 +245,15 @@
 
   <describe title="Use a child &lt;attr name=&quot;of&quot;&gt; element">
    <it title="should choose &lt;when&gt; element which satisfies its condition">
-    <compute><choose of="//Aaa/Bbb/@n"
-      ><when eq="0">When-0</when
-      ><when eq="E"><attr name="of">//Aaa/Ccc/Ddd</attr>When-E</when
-      ><when eq="1">When-1</when
-      ><when eq="2">When-2</when
-      ><otherwise>Otherwise</otherwise
-    ></choose></compute>
+    <compute>
+     <choose of="//Aaa/Bbb/@n">
+      <when eq="0">When-0</when>
+      <when eq="E"><attr name="of">//Aaa/Ccc/Ddd</attr>When-E</when>
+      <when eq="1">When-1</when>
+      <when eq="2">When-2</when>
+      <otherwise>Otherwise</otherwise>
+     </choose>
+    </compute>
     <expect>When-E</expect>
    </it>
   </describe>
@@ -222,10 +261,12 @@
 
   <describe title="Use @what attribute">
    <it title="should evaluate a child text if @what is 'value'">
-    <compute><choose
-     ><when what="value" of="//Aaa/Ccc" eq="D">When</when
-     ><otherwise>Otherwise</otherwise
-     ></choose></compute>
+    <compute>
+     <choose>
+      <when what="value" of="//Aaa/Ccc" eq="D">When</when>
+      <otherwise>Otherwise</otherwise>
+     </choose>
+    </compute>
     <expect>When</expect>
    </it>
 
@@ -240,74 +281,92 @@
 
 
    <it title="should evaluate a child number value if @what is 'number'">
-    <compute><choose
-     ><when what="number" of="//Aaa/Ccc/@n" eq="2">When</when
-     ><otherwise>Otherwise</otherwise
-     ></choose></compute>
+    <compute>
+     <choose>
+      <when what="number" of="//Aaa/Ccc/@n" eq="2">When</when>
+      <otherwise>Otherwise</otherwise>
+     </choose>
+    </compute>
     <expect>When</expect>
    </it>
 
 
    <it title="should evaluate a child number value if @what is 'number' but not a number">
-    <compute><choose
-     ><when what="number" of="//Aaa/Ccc" eq="NaN">When</when
-     ><otherwise>Otherwise</otherwise
-     ></choose></compute>
+    <compute>
+     <choose>
+      <when what="number" of="//Aaa/Ccc" eq="NaN">When</when>
+      <otherwise>Otherwise</otherwise>
+     </choose>
+    </compute>
     <expect>When</expect>
    </it>
 
 
    <it title="should evaluate a child node name if @what is 'name'">
-    <compute><choose
-     ><when what="name" of="//Aaa/Ccc" eq="Ccc">When</when
-     ><otherwise>Otherwise</otherwise
-     ></choose></compute>
+    <compute>
+     <choose>
+      <when what="name" of="//Aaa/Ccc" eq="Ccc">When</when>
+      <otherwise>Otherwise</otherwise>
+     </choose>
+    </compute>
     <expect>When</expect>
    </it>
 
 
    <it title="should evaluate a child preceding comment if @what is 'preceding-comment'">
-    <compute><choose
-     ><when what="preceding-comment" of="//Aaa/Ccc" eq=" Comment 3 ">When</when
-     ><otherwise>Otherwise</otherwise
-     ></choose></compute>
+    <compute>
+     <choose>
+      <when what="preceding-comment" of="//Aaa/Ccc" eq=" Comment 3 ">When</when>
+      <otherwise>Otherwise</otherwise>
+     </choose>
+    </compute>
     <expect>When</expect>
    </it>
 
 
    <it title="should evaluate a child following comment if @what is 'following-comment'">
-    <compute><choose
-     ><when what="following-comment" of="//Aaa/Ccc" eq=" Comment 4 ">When</when
-     ><otherwise>Otherwise</otherwise
-     ></choose></compute>
+    <compute>
+     <choose>
+      <when what="following-comment" of="//Aaa/Ccc" eq=" Comment 4 ">When</when>
+      <otherwise>Otherwise</otherwise>
+     </choose>
+    </compute>
     <expect>When</expect>
    </it>
 
 
    <it title="should evaluate child node count if @what is 'count'">
-    <compute><choose
-     ><when what="count" of="//Aaa/*" eq="2">When</when
-     ><otherwise>Otherwise</otherwise
-     ></choose></compute>
+    <compute>
+     <choose>
+      <when what="count" of="//Aaa/*" eq="2">When</when>
+      <otherwise>Otherwise</otherwise>
+     </choose>
+    </compute>
     <expect>When</expect>
    </it>
 
 
    <it title="should evaluate sum of child number value if @what is 'sum'">
-    <compute><choose
-     ><when what="sum" of="//Aaa/*/@n" eq="3">When</when
-     ><otherwise>Otherwise</otherwise
-     ></choose></compute>
+    <compute>
+     <choose>
+      <when what="sum" of="//Aaa/*/@n" eq="3">When</when>
+      <otherwise>Otherwise</otherwise>
+     </choose>
+    </compute>
     <expect>When</expect>
    </it>
 
 
    <it title="should evaluate an index of parent loop if @what is 'index'">
-    <compute><for index="I" each="//Aaa/*"><choose
-     ><when what="index" eq="2">When-A</when
-     ><when what="index" of="I" eq="1">When-B</when
-     ><otherwise>Otherwise</otherwise
-     ></choose></for></compute>
+    <compute>
+     <for index="I" each="//Aaa/*">
+      <choose>
+       <when what="index" eq="2">When-A</when>
+       <when what="index" of="I" eq="1">When-B</when>
+       <otherwise>Otherwise</otherwise>
+      </choose>
+     </for>
+    </compute>
     <expect>When-BWhen-A</expect>
    </it>
   </describe>
@@ -315,10 +374,12 @@
 
   <describe title="Use a child &lt;attr name=&quot;what&quot;&gt; element">
    <it title="should evaluate a child node name if @what is 'name'">
-    <compute><choose
-     ><when of="//Aaa/Ccc" eq="Ccc"><attr name="what">name</attr>When</when
-     ><otherwise>Otherwise</otherwise
-     ></choose></compute>
+    <compute>
+     <choose>
+      <when of="//Aaa/Ccc" eq="Ccc"><attr name="what">name</attr>When</when>
+      <otherwise>Otherwise</otherwise>
+     </choose>
+    </compute>
     <expect>When</expect>
    </it>
   </describe>
@@ -326,10 +387,12 @@
 
   <describe title="Use @data-src attribute">
    <it title="should choose &lt;when&gt; element which satisfies its condition">
-    <compute><choose
-     ><when eq="DEF" of="/List/Item[2]" data-src="data/choose.data.xml">When-2</when
-     ><otherwise>Otherwise</otherwise
-    ></choose></compute>
+    <compute>
+     <choose>
+      <when eq="DEF" of="/List/Item[2]" data-src="data/choose.data.xml">When-2</when>
+      <otherwise>Otherwise</otherwise>
+     </choose>
+    </compute>
     <expect>When-2</expect>
    </it>
   </describe>
@@ -337,11 +400,13 @@
 
   <describe title="Use a child &lt;attr name=&quot;data-src&quot;&gt; element">
    <it title="should choose &lt;when&gt; element which satisfies its condition">
-    <compute><choose
-     ><when eq="DEF" of="/List/Item[2]"
-     ><attr name="data-src">data/choose.data.xml</attr>When-2</when
-     ><otherwise>Otherwise</otherwise
-    ></choose></compute>
+    <compute>
+     <choose>
+      <when eq="DEF" of="/List/Item[2]">
+       <attr name="data-src">data/choose.data.xml</attr>When-2</when>
+      <otherwise>Otherwise</otherwise>
+     </choose>
+    </compute>
     <expect>When-2</expect>
    </it>
   </describe>
@@ -351,289 +416,353 @@
 
  <describe title="Test operator attributes of &lt;when&gt; element">
   <it title="should test equal condition with @eq attribute">
-   <compute><choose of="//Aaa/Bbb"
-    ><when eq="ABC">When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb">
+     <when eq="ABC">When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>When-1</expect>
   </it>
 
 
   <it title="should test not-equal condition with @eq attribute">
-   <compute><choose of="//Aaa/Bbb"
-    ><when eq="AAA">When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb">
+     <when eq="AAA">When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>Otherwise</expect>
   </it>
 
 
   <it title="should test equal condition with @ne attribute">
-   <compute><choose of="//Aaa/Bbb"
-    ><when ne="AAA">When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb">
+     <when ne="AAA">When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>When-1</expect>
   </it>
 
 
   <it title="should test not-equal condition with @ne attribute">
-   <compute><choose of="//Aaa/Bbb"
-    ><when ne="ABC">When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb">
+     <when ne="ABC">When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>Otherwise</expect>
   </it>
 
 
   <it title="should test less condition with @le attribute">
-   <compute><choose of="//Aaa/Bbb/@n"
-    ><when le="2">When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb/@n">
+     <when le="2">When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>When-1</expect>
   </it>
 
 
   <it title="should test equal condition with @le attribute">
-   <compute><choose of="//Aaa/Bbb/@n"
-    ><when le="1">When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb/@n">
+     <when le="1">When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>When-1</expect>
   </it>
 
 
   <it title="should test greater condition with @le attribute">
-   <compute><choose of="//Aaa/Bbb/@n"
-    ><when le="0">When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb/@n">
+     <when le="0">When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>Otherwise</expect>
   </it>
 
 
   <it title="should test less condition with @lt attribute">
-   <compute><choose of="//Aaa/Bbb/@n"
-    ><when lt="2">When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb/@n">
+     <when lt="2">When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>When-1</expect>
   </it>
 
 
   <it title="should test equal condition with @lt attribute">
-   <compute><choose of="//Aaa/Bbb/@n"
-    ><when lt="1">When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb/@n">
+     <when lt="1">When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>Otherwise</expect>
   </it>
 
 
   <it title="should test greater condition with @lt attribute">
-   <compute><choose of="//Aaa/Bbb/@n"
-    ><when lt="0">When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb/@n">
+     <when lt="0">When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>Otherwise</expect>
   </it>
 
 
   <it title="should test less condition with @ge attribute">
-   <compute><choose of="//Aaa/Bbb/@n"
-    ><when ge="2">When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb/@n">
+     <when ge="2">When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>Otherwise</expect>
   </it>
 
 
   <it title="should test equal condition with @ge attribute">
-   <compute><choose of="//Aaa/Bbb/@n"
-    ><when ge="1">When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb/@n">
+     <when ge="1">When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>When-1</expect>
   </it>
 
 
   <it title="should test greater condition with @ge attribute">
-   <compute><choose of="//Aaa/Bbb/@n"
-    ><when ge="0">When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb/@n">
+     <when ge="0">When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>When-1</expect>
   </it>
 
 
   <it title="should test less condition with @gt attribute">
-   <compute><choose of="//Aaa/Bbb/@n"
-    ><when gt="2">When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb/@n">
+     <when gt="2">When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>Otherwise</expect>
   </it>
 
 
   <it title="should test equal condition with @gt attribute">
-   <compute><choose of="//Aaa/Bbb/@n"
-    ><when gt="1">When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb/@n">
+     <when gt="1">When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>Otherwise</expect>
   </it>
 
 
   <it title="should test greater condition with @gt attribute">
-   <compute><choose of="//Aaa/Bbb/@n"
-    ><when gt="0">When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb/@n">
+     <when gt="0">When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>When-1</expect>
   </it>
 
 
   <it title="should test equal condition with &lt;attr name=&quot;eq&quot;&gt; attribute">
-   <compute><choose of="//Aaa/Bbb"
-    ><when><attr name="eq">ABC</attr>When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb">
+     <when><attr name="eq">ABC</attr>When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>When-1</expect>
   </it>
 
 
   <it title="should test not-equal condition with &lt;attr name=&quot;eq&quot;&gt; attribute">
-   <compute><choose of="//Aaa/Bbb"
-    ><when><attr name="eq">AAA</attr>When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb">
+     <when><attr name="eq">AAA</attr>When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>Otherwise</expect>
   </it>
 
 
   <it title="should test equal condition with &lt;attr name=&quot;ne&quot;&gt; attribute">
-   <compute><choose of="//Aaa/Bbb"
-    ><when><attr name="ne">ABC</attr>When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb">
+     <when><attr name="ne">ABC</attr>When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>Otherwise</expect>
   </it>
 
 
   <it title="should test not-equal condition with &lt;attr name=&quot;ne&quot;&gt; attribute">
-   <compute><choose of="//Aaa/Bbb"
-    ><when><attr name="ne">AAA</attr>When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb">
+     <when><attr name="ne">AAA</attr>When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>When-1</expect>
   </it>
 
 
   <it title="should test less condition with &lt;attr name=&quot;le&quot;&gt; attribute">
-   <compute><choose of="//Aaa/Bbb/@n"
-    ><when><attr name="le">2</attr>When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb/@n">
+     <when><attr name="le">2</attr>When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>When-1</expect>
   </it>
 
 
   <it title="should test equal condition with &lt;attr name=&quot;le&quot;&gt; attribute">
-   <compute><choose of="//Aaa/Bbb/@n"
-    ><when><attr name="le">1</attr>When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb/@n">
+     <when><attr name="le">1</attr>When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>When-1</expect>
   </it>
 
 
   <it title="should test greater condition with &lt;attr name=&quot;le&quot;&gt; attribute">
-   <compute><choose of="//Aaa/Bbb/@n"
-    ><when><attr name="le">0</attr>When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb/@n">
+     <when><attr name="le">0</attr>When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>Otherwise</expect>
   </it>
 
 
   <it title="should test less condition with &lt;attr name=&quot;lt&quot;&gt; attribute">
-   <compute><choose of="//Aaa/Bbb/@n"
-    ><when><attr name="lt">2</attr>When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb/@n">
+     <when><attr name="lt">2</attr>When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>When-1</expect>
   </it>
 
 
   <it title="should test equal condition with &lt;attr name=&quot;lt&quot;&gt; attribute">
-   <compute><choose of="//Aaa/Bbb/@n"
-    ><when><attr name="lt">1</attr>When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb/@n">
+     <when><attr name="lt">1</attr>When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>Otherwise</expect>
   </it>
 
 
   <it title="should test greater condition with &lt;attr name=&quot;lt&quot;&gt; attribute">
-   <compute><choose of="//Aaa/Bbb/@n"
-    ><when><attr name="lt">0</attr>When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb/@n">
+     <when><attr name="lt">0</attr>When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>Otherwise</expect>
   </it>
 
 
   <it title="should test less condition with &lt;attr name=&quot;ge&quot;&gt; attribute">
-   <compute><choose of="//Aaa/Bbb/@n"
-    ><when><attr name="ge">2</attr>When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb/@n">
+     <when><attr name="ge">2</attr>When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>Otherwise</expect>
   </it>
 
 
   <it title="should test equal condition with &lt;attr name=&quot;ge&quot;&gt; attribute">
-   <compute><choose of="//Aaa/Bbb/@n"
-    ><when><attr name="ge">1</attr>When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb/@n">
+     <when><attr name="ge">1</attr>When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>When-1</expect>
   </it>
 
 
   <it title="should test greater condition with &lt;attr name=&quot;ge&quot;&gt; attribute">
-   <compute><choose of="//Aaa/Bbb/@n"
-    ><when><attr name="ge">0</attr>When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb/@n">
+     <when><attr name="ge">0</attr>When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>When-1</expect>
   </it>
 
 
   <it title="should test less condition with &lt;attr name=&quot;gt&quot;&gt; attribute">
-   <compute><choose of="//Aaa/Bbb/@n"
-    ><when><attr name="gt">2</attr>When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb/@n">
+     <when><attr name="gt">2</attr>When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>Otherwise</expect>
   </it>
 
 
   <it title="should test equal condition with &lt;attr name=&quot;gt&quot;&gt; attribute">
-   <compute><choose of="//Aaa/Bbb/@n"
-    ><when><attr name="gt">1</attr>When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb/@n">
+     <when><attr name="gt">1</attr>When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>Otherwise</expect>
   </it>
 
 
   <it title="should test greater condition with &lt;attr name=&quot;gt&quot;&gt; attribute">
-   <compute><choose of="//Aaa/Bbb/@n"
-    ><when><attr name="gt">0</attr>When-1</when
-    ><otherwise>Otherwise</otherwise
-   ></choose></compute>
+   <compute>
+    <choose of="//Aaa/Bbb/@n">
+     <when><attr name="gt">0</attr>When-1</when>
+     <otherwise>Otherwise</otherwise>
+    </choose>
+   </compute>
    <expect>When-1</expect>
   </it>
  </describe>
