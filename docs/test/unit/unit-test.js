@@ -10,9 +10,7 @@ function showHideComparison(switcher) {
 
 window.addEventListener('DOMContentLoaded', () => {
   const passFailBar = document.getElementById('passFailBar');
-  console.log(passFailBar);
   const failIt = document.querySelector('section.it.fail');
-  console.log(failIt);
   if (failIt) {
     passFailBar.style.backgroundColor = '#f00';
   } else {
