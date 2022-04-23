@@ -16,7 +16,8 @@
   <antcall target="setup:xsldo"/>
  </target>
 
- <property name="dep.xslutil.version" value="1.0.2"/>
+ <property name="dep.xslutil.version" value="1.0.3"/>
+ <property name="dep.xsldo.version" value="1.0.3"/>
 
  <target name="setup:xslutil">
   <property name="pkg" value="xslutil-${dep.xslutil.version}"/>
@@ -27,8 +28,6 @@
   <get src="${url}" dest="${zip}"/>
   <unzip src="${zip}" dest="${unzip}"/>
  </target>
-
- <property name="dep.xsldo.version" value="1.0.1"/>
 
  <target name="setup:xsldo">
   <property name="pkg" value="xsldo-${dep.xsldo.version}"/>
